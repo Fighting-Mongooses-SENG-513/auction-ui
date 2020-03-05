@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-auctioneer',
@@ -8,13 +7,10 @@ import { AuthService } from '../auth/auth.service';
 })
 export class AuctioneerComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  onLogout() {
-    this.authService.logout();
+    
   }
 
 }

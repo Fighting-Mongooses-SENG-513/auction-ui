@@ -10,6 +10,7 @@ export class AuthService {
 
     private authStatusListener = new Subject<boolean>();
     private personaListener = new Subject<boolean>();
+    private errorListener = new Subject<string>();
 
 
     constructor(private httpClient: HttpClient) {}
@@ -19,6 +20,9 @@ export class AuthService {
     }
     getPersonaListener() {
         return this.personaListener.asObservable();
+    }
+    getErrorListener() {
+        return this.errorListener.asObservable();
     }
 
     createUser(email: string, password: string, auctioneer: boolean) {
@@ -34,9 +38,9 @@ export class AuthService {
                     this.authStatusListener.next(true);
 
                 }
-            }, () => {
+            }, error => {
                 // Failed account creation attempt
-                this.authStatusListener.next(false);
+                this.errorListener.next(error.error.message);
             });
     }
 
@@ -52,9 +56,9 @@ export class AuthService {
                     this.setToken(this.token, new Date(timestamp.getTime() + response.expiresIn * 1000));
                     this.authStatusListener.next(true);
                 }
-            }, () => {
+            }, error => {
                 // Failed login attempt
-                this.authStatusListener.next(false);
+                this.errorListener.next(error.error.message);
             });
     }
 
