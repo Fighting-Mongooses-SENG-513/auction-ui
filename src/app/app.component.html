@@ -1,4 +1,5 @@
-<div class="container-fluid">
-  <app-auth *ngIf="!loggedIn"></app-auth>
-</div>
+<app-auth *ngIf="!loggedIn"></app-auth>
+<app-bidder *ngIf="loggedIn && !isAuctioneer"></app-bidder>
+<app-auctioneer *ngIf="loggedIn && isAuctioneer"></app-auctioneer>
+
 <!-- <router-outlet></router-outlet> -->

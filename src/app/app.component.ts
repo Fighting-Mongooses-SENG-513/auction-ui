@@ -8,7 +8,7 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent implements OnInit{
   public loggedIn = false;
-  public isAuctioneer = false;
+  public isAuctioneer: boolean;
 
   constructor(private authService: AuthService) {}
 
@@ -16,6 +16,12 @@ export class AppComponent implements OnInit{
     this.authService.getAuthStatusListener().subscribe(status => {
       this.loggedIn = status;
     });
+    this.authService.getPersonaListener().subscribe(persona => {
+      this.isAuctioneer = persona;
+    });
+    this.authService.tryLogin();
+
+
   }
   
 }
