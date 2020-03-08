@@ -9,12 +9,20 @@ export class AuthService {
     private tokenTimer: any;
 
     private authStatusListener = new Subject<boolean>();
+    private personaListener = new Subject<boolean>();
+    private errorListener = new Subject<string>();
 
 
     constructor(private httpClient: HttpClient) {}
 
     getAuthStatusListener() {
         return this.authStatusListener.asObservable();
+    }
+    getPersonaListener() {
+        return this.personaListener.asObservable();
+    }
+    getErrorListener() {
+        return this.errorListener.asObservable();
     }
 
     createUser(email: string, password: string, auctioneer: boolean) {
@@ -23,15 +31,16 @@ export class AuthService {
             .subscribe(response => {
                 this.token = response.token;
                 if (this.token) {
+                    this.decodeToken(this.token);
                     this.setTokenTimer(response.expiresIn * 1000);
                     const timestamp = new Date();
                     this.setToken(this.token, new Date(timestamp.getTime() + response.expiresIn * 1000));
                     this.authStatusListener.next(true);
 
                 }
-            }, () => {
+            }, error => {
                 // Failed account creation attempt
-                this.authStatusListener.next(false);
+                this.errorListener.next(error.error.message);
             });
     }
 
@@ -41,14 +50,15 @@ export class AuthService {
             .subscribe(response => {
                 this.token = response.token;
                 if (this.token) {
+                    this.decodeToken(this.token);
                     this.setTokenTimer(response.expiresIn * 1000);
                     const timestamp = new Date();
                     this.setToken(this.token, new Date(timestamp.getTime() + response.expiresIn * 1000));
                     this.authStatusListener.next(true);
                 }
-            }, () => {
+            }, error => {
                 // Failed login attempt
-                this.authStatusListener.next(false);
+                this.errorListener.next(error.error.message);
             });
     }
 
@@ -61,6 +71,7 @@ export class AuthService {
             const expiresIn = cookie.expirationDate.getTime() - now.getTime();
             if (expiresIn > 0) {
                 this.token = cookie.token;
+                this.decodeToken(this.token);
                 this.setTokenTimer(expiresIn);
                 this.authStatusListener.next(true);
             } else {
@@ -69,18 +80,17 @@ export class AuthService {
         }
     }
 
+    logout() {
+        this.authStatusListener.next(false);
+        this.token = null;
+        clearTimeout(this.tokenTimer);
+        this.removeToken();
+    }
+
     private setTokenTimer(duration: number) {
         this.tokenTimer = setTimeout(() => {
             this.logout();
         }, duration); // milliseconds
-    }
-
-
-    private logout() {
-        this.token = null;
-        clearTimeout(this.tokenTimer);
-        this.removeToken();
-
     }
 
     private setToken(token: string, expirationDate: Date) {
@@ -102,6 +112,15 @@ export class AuthService {
         } else {
             return {token: token, expirationDate: new Date(expirationDate)};
         }
+    }
+
+    private decodeToken(token: string) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace('-', '+').replace('_', '/');
+        const payload = JSON.parse(window.atob(base64));
+        if (payload.auctioneer !== 'undefined' || payload.auctioneer !== '') {
+            this.personaListener.next(payload.auctioneer);
+        }  
     }
 }
 
