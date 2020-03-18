@@ -34,6 +34,12 @@ export class AuctioneerAddItemDialog {
     this.dialogRef.close();
   }
 
+
+  fileProgress(fileInput: any) {
+        this.fileData = <File>fileInput.target.files[0];
+        this.preview();
+  }
+
   preview() {
       // Show preview
       var mimeType = this.fileData.type;

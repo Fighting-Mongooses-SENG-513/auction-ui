@@ -35,17 +35,20 @@
     <div *ngIf="data.startTime >= data.endTime">
       The Auction End Date must be after the Auction Start Date
     </div>
-            <h3>Upload Image</h3>
-            <div class="form-group">
-                <input type="file" name="image" [(ngModel)]="data.image"/>
-            </div>
-            <div class="image-preview mb-3" *ngIf="previewUrl">
-                <img [src]="previewUrl" height="100" />
-            </div>
+      <h3>Upload Image</h3>
+      <div class="form-group">
+          <input type="file" name="image" (change)="fileProgress($event)" [(ngModel)]="data.image"/>
+      </div>
+      <div *ngIf="fileUploadProgress">
+          Upload progress: {{ fileUploadProgress }}
+      </div>
+      <div class="image-preview mb-3" *ngIf="previewUrl">
+          <img [src]="previewUrl" height="100" />
+      </div>
 
-            <div class="mb-3" *ngIf="uploadedFilePath">
-                {{uploadedFilePath}}
-            </div>
+      <div class="mb-3" *ngIf="uploadedFilePath">
+          {{uploadedFilePath}}
+      </div>
   </form>
 </div>
 
