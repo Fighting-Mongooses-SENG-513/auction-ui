@@ -1,0 +1,813 @@
+=== npm audit security report ===                        
+                                                                                
+# Run  npm install --save-dev karma@4.4.1  to resolve 5 vulnerabilities
+SEMVER WARNING: Recommended action is a potentially breaking change
+                                                                                
+  Low             Regular Expression Denial of Service                          
+                                                                                
+  Package         braces                                                        
+                                                                                
+  Dependency of   karma [dev]                                                   
+                                                                                
+  Path            karma > expand-braces > braces                                
+                                                                                
+  More info       https://nodesecurity.io/advisories/786                        
+                                                                                
+
+
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Dependency of   karma [dev]                                                   
+                                                                                
+  Path            karma > log4js > streamroller > mkdirp > minimist             
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+
+
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Dependency of   karma [dev]                                                   
+                                                                                
+  Path            karma > chokidar > fsevents > node-pre-gyp > mkdirp >         
+                  minimist                                                      
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+
+
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Dependency of   karma [dev]                                                   
+                                                                                
+  Path            karma > chokidar > fsevents > node-pre-gyp > tar > mkdirp >   
+                  minimist                                                      
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+
+
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Dependency of   karma [dev]                                                   
+                                                                                
+  Path            karma > chokidar > fsevents > node-pre-gyp > rc > minimist    
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+
+
+# Run  npm install --save-dev ts-node@8.7.0  to resolve 1 vulnerability
+SEMVER WARNING: Recommended action is a potentially breaking change
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Dependency of   ts-node [dev]                                                 
+                                                                                
+  Path            ts-node > mkdirp > minimist                                   
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+
+
+# Run  npm install --save-dev @angular/compiler-cli@9.0.6  to resolve 3 vulnerabilities
+SEMVER WARNING: Recommended action is a potentially breaking change
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Dependency of   @angular/compiler-cli [dev]                                   
+                                                                                
+  Path            @angular/compiler-cli > chokidar > fsevents > node-pre-gyp >  
+                  mkdirp > minimist                                             
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+
+
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Dependency of   @angular/compiler-cli [dev]                                   
+                                                                                
+  Path            @angular/compiler-cli > chokidar > fsevents > node-pre-gyp >  
+                  tar > mkdirp > minimist                                       
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+
+
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Dependency of   @angular/compiler-cli [dev]                                   
+                                                                                
+  Path            @angular/compiler-cli > chokidar > fsevents > node-pre-gyp >  
+                  rc > minimist                                                 
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+
+
+                                                                                
+                                 Manual Review                                  
+             Some vulnerabilities require your attention to resolve             
+                                                                                
+          Visit https://go.npm.me/audit-guide for additional guidance           
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > cacache > mkdirp > minimist   
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > terser-webpack-plugin >       
+                  cacache > mkdirp > minimist                                   
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack >                     
+                  terser-webpack-plugin > cacache > mkdirp > minimist           
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > @schematics/update > pacote > cacache >        
+                  mkdirp > minimist                                             
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > pacote > cacache > mkdirp > minimist           
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > @schematics/update > pacote >                  
+                  make-fetch-happen > cacache > mkdirp > minimist               
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > pacote > make-fetch-happen > cacache > mkdirp  
+                  > minimist                                                    
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > @schematics/update > pacote >                  
+                  npm-registry-fetch > make-fetch-happen > cacache > mkdirp >   
+                  minimist                                                      
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > pacote > npm-registry-fetch >                  
+                  make-fetch-happen > cacache > mkdirp > minimist               
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > cacache > move-concurrently   
+                  > copy-concurrently > mkdirp > minimist                       
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > terser-webpack-plugin >       
+                  cacache > move-concurrently > copy-concurrently > mkdirp >    
+                  minimist                                                      
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack >                     
+                  terser-webpack-plugin > cacache > move-concurrently >         
+                  copy-concurrently > mkdirp > minimist                         
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > @schematics/update > pacote > cacache >        
+                  move-concurrently > copy-concurrently > mkdirp > minimist     
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > pacote > cacache > move-concurrently >         
+                  copy-concurrently > mkdirp > minimist                         
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > @schematics/update > pacote >                  
+                  make-fetch-happen > cacache > move-concurrently >             
+                  copy-concurrently > mkdirp > minimist                         
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > pacote > make-fetch-happen > cacache >         
+                  move-concurrently > copy-concurrently > mkdirp > minimist     
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > @schematics/update > pacote >                  
+                  npm-registry-fetch > make-fetch-happen > cacache >            
+                  move-concurrently > copy-concurrently > mkdirp > minimist     
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > pacote > npm-registry-fetch >                  
+                  make-fetch-happen > cacache > move-concurrently >             
+                  copy-concurrently > mkdirp > minimist                         
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > copy-webpack-plugin >         
+                  cacache > move-concurrently > copy-concurrently > mkdirp >    
+                  minimist                                                      
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > cacache > move-concurrently   
+                  > mkdirp > minimist                                           
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > terser-webpack-plugin >       
+                  cacache > move-concurrently > mkdirp > minimist               
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack >                     
+                  terser-webpack-plugin > cacache > move-concurrently > mkdirp  
+                  > minimist                                                    
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > @schematics/update > pacote > cacache >        
+                  move-concurrently > mkdirp > minimist                         
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > pacote > cacache > move-concurrently > mkdirp  
+                  > minimist                                                    
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > @schematics/update > pacote >                  
+                  make-fetch-happen > cacache > move-concurrently > mkdirp >    
+                  minimist                                                      
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > pacote > make-fetch-happen > cacache >         
+                  move-concurrently > mkdirp > minimist                         
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > @schematics/update > pacote >                  
+                  npm-registry-fetch > make-fetch-happen > cacache >            
+                  move-concurrently > mkdirp > minimist                         
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > pacote > npm-registry-fetch >                  
+                  make-fetch-happen > cacache > move-concurrently > mkdirp >    
+                  minimist                                                      
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > copy-webpack-plugin >         
+                  cacache > move-concurrently > mkdirp > minimist               
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > copy-webpack-plugin >         
+                  cacache > mkdirp > minimist                                   
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > less > mkdirp > minimist      
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > stylus > mkdirp > minimist    
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack > mkdirp > minimist   
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack-dev-middleware >      
+                  mkdirp > minimist                                             
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack-dev-server >          
+                  webpack-dev-middleware > mkdirp > minimist                    
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack-dev-server >          
+                  portfinder > mkdirp > minimist                                
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > @schematics/update > pacote > mkdirp >         
+                  minimist                                                      
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > pacote > mkdirp > minimist                     
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > @schematics/update > pacote > tar > mkdirp >   
+                  minimist                                                      
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular/cli [dev]                                            
+                                                                                
+  Path            @angular/cli > pacote > tar > mkdirp > minimist               
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack > watchpack >         
+                  chokidar > fsevents > node-pre-gyp > mkdirp > minimist        
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack-dev-server >          
+                  chokidar > fsevents > node-pre-gyp > mkdirp > minimist        
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack > watchpack >         
+                  chokidar > fsevents > node-pre-gyp > tar > mkdirp > minimist  
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack-dev-server >          
+                  chokidar > fsevents > node-pre-gyp > tar > mkdirp > minimist  
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack > watchpack >         
+                  chokidar > fsevents > node-pre-gyp > rc > minimist            
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack-dev-server >          
+                  chokidar > fsevents > node-pre-gyp > rc > minimist            
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   karma [dev]                                                   
+                                                                                
+  Path            karma > optimist > minimist                                   
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   protractor [dev]                                              
+                                                                                
+  Path            protractor > optimist > minimist                              
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+found 57 vulnerabilities (1 low, 56 moderate) in 19253 scanned packages
+  9 vulnerabilities require semver-major dependency updates.
+  48 vulnerabilities require manual review. See the full report for details.

@@ -1,0 +1,120 @@
+=== npm audit security report ===                        
+                                                                                
+                                                                                
+                                 Manual Review                                  
+             Some vulnerabilities require your attention to resolve             
+                                                                                
+          Visit https://go.npm.me/audit-guide for additional guidance           
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack > watchpack >         
+                  chokidar > fsevents > node-pre-gyp > mkdirp > minimist        
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack-dev-server >          
+                  chokidar > fsevents > node-pre-gyp > mkdirp > minimist        
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack > watchpack >         
+                  chokidar > fsevents > node-pre-gyp > tar > mkdirp > minimist  
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack-dev-server >          
+                  chokidar > fsevents > node-pre-gyp > tar > mkdirp > minimist  
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack > watchpack >         
+                  chokidar > fsevents > node-pre-gyp > rc > minimist            
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   @angular-devkit/build-angular [dev]                           
+                                                                                
+  Path            @angular-devkit/build-angular > webpack-dev-server >          
+                  chokidar > fsevents > node-pre-gyp > rc > minimist            
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   karma [dev]                                                   
+                                                                                
+  Path            karma > optimist > minimist                                   
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+                                                                                
+  Moderate        Prototype Pollution                                           
+                                                                                
+  Package         minimist                                                      
+                                                                                
+  Patched in      >=1.2.3                                                       
+                                                                                
+  Dependency of   protractor [dev]                                              
+                                                                                
+  Path            protractor > optimist > minimist                              
+                                                                                
+  More info       https://nodesecurity.io/advisories/1179                       
+                                                                                
+found 8 moderate severity vulnerabilities in 15587 scanned packages
+  8 vulnerabilities require manual review. See the full report for details.
