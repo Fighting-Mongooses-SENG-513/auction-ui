@@ -37,7 +37,7 @@
     </div>
             <h3>Upload Image</h3>
             <div class="form-group">
-                <input type="file" name="image" (change)="fileProgress($event)" [(ngModel)]="data.image"/>
+                <input type="file" name="image" [(ngModel)]="data.image"/>
             </div>
             <div class="image-preview mb-3" *ngIf="previewUrl">
                 <img [src]="previewUrl" height="100" />
