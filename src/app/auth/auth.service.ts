@@ -15,6 +15,10 @@ export class AuthService {
 
     constructor(private httpClient: HttpClient) {}
 
+    getToken(){
+        return this.token;
+    }
+
     getAuthStatusListener() {
         return this.authStatusListener.asObservable();
     }
