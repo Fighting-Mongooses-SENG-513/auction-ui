@@ -4,22 +4,15 @@
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Item Name</mat-label>
-        <input matInput [(ngModel)]="data.itemName" name="name" required>
+        <input matInput [(ngModel)]="data.name" name="name" required>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Minimum Bid</mat-label>
-        <input matInput type="number" [(ngModel)]="data.minimumBid" class="right-align" name="bid" required>
+        <input matInput type="number" [(ngModel)]="data.buyoutPrice" class="right-align" name="bid" required>
         <span matPrefix>$&nbsp;</span>
         <span matSuffix>.00</span>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="fill">
-        <mat-label>Auction Start Time</mat-label>
-        <input [min]="min" matInput [owlDateTime]="dtstart" [owlDateTimeTrigger]="dtstart" placeholder="Date Time" [(ngModel)]="data.startTime" name="start" required>
-        <owl-date-time #dtstart></owl-date-time>
       </mat-form-field>
     </p>
     <p>
@@ -27,17 +20,11 @@
         <mat-label>Auction End Time</mat-label>
         <input [min]="min" matInput [owlDateTime]="dtend" [owlDateTimeTrigger]="dtend" placeholder="Date Time" [(ngModel)]="data.endTime" name="end" required>
         <owl-date-time #dtend></owl-date-time>
-        <mat-error *ngIf="data.endTime < data.startTime">
-          Please enter a valid date
-        </mat-error>
       </mat-form-field>
     </p>
-    <div *ngIf="data.startTime >= data.endTime">
-      The Auction End Date must be after the Auction Start Date
-    </div>
       <h3>Upload Image</h3>
       <div class="form-group">
-          <input type="file" name="image" (change)="fileProgress($event)" [(ngModel)]="data.image"/>
+          <input type="file" name="image" (change)="fileProgress($event)" [(ngModel)]="data.imageUrl"/>
       </div>
       <div *ngIf="fileUploadProgress">
           Upload progress: {{ fileUploadProgress }}

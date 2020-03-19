@@ -1,7 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
   <a class="navbar-brand" href="#">Auction App</a>
   <span class="spacer"></span>
-  <button *ngIf="loggedIn && isAuctioneer" class="btn btn-primary mr-sm-2" (click)="openDialog()">Add Item</button>
   <button *ngIf="loggedIn" class="btn btn-secondary mr-sm-2" (click)="onLogout()">Logout</button>
 </nav>
 <div class="container-fluid">
