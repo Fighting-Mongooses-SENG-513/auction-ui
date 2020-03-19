@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { AuctioneerService } from './auctioneer/auctioneer.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ export class AppComponent implements OnInit{
   public isAuctioneer: boolean;
   public errorMessage: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+              private auctioneerService: AuctioneerService) {}
 
   ngOnInit() {
     this.authService.getAuthStatusListener().subscribe(status => {
@@ -24,6 +26,9 @@ export class AppComponent implements OnInit{
       this.isAuctioneer = persona;
     });
     this.authService.getErrorListener().subscribe(message => {
+      this.errorMessage = message;
+    })
+    this.auctioneerService.getAuctioneerErrorListener().subscribe(message => {
       this.errorMessage = message;
     })
     this.authService.tryLogin();
