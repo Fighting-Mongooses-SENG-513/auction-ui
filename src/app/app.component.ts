@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { AuctioneerService } from './auctioneer/auctioneer.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AuctioneerAddItemDialog } from './auctioneer-dialog/auctioneer-add-item-dialog.component';
 
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit{
  endTime: number;
 
 
-  constructor(private authService: AuthService, public dialog: MatDialog) {}
+  constructor(private authService: AuthService, public dialog: MatDialog, private auctioneerService: AuctioneerService) {}
 
   ngOnInit() {
     this.authService.getAuthStatusListener().subscribe(status => {
@@ -40,6 +41,9 @@ export class AppComponent implements OnInit{
       this.isAuctioneer = persona;
     });
     this.authService.getErrorListener().subscribe(message => {
+      this.errorMessage = message;
+    })
+    this.auctioneerService.getAuctioneerErrorListener().subscribe(message => {
       this.errorMessage = message;
     })
     this.authService.tryLogin();
