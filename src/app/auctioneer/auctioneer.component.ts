@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuctionItem } from '../models/auction-item';
+import { AuctionDialog} from '../models/auction-dialog';
 import { AuctioneerService } from '../auctioneer/auctioneer.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AuctioneerAddItemDialog } from '../auctioneer-dialog/auctioneer-add-item-dialog.component';
+
 
 @Component({
   selector: 'app-auctioneer',
@@ -10,12 +12,11 @@ import { AuctioneerAddItemDialog } from '../auctioneer-dialog/auctioneer-add-ite
   styleUrls: ['./auctioneer.component.scss']
 })
 export class AuctioneerComponent implements OnInit {
-
   public auctionItems: AuctionItem[] = [];
-  public newItem: AuctionItem;
+  public newDialog: AuctionDialog;
 
   constructor(private auctioneerService: AuctioneerService, public dialog: MatDialog,) {
-    this.newItem = {} as AuctionItem;
+    this.newDialog = {} as AuctionDialog;
   }
 
   ngOnInit() {
@@ -25,45 +26,54 @@ export class AuctioneerComponent implements OnInit {
 
     this.auctioneerService.getAuctions();
   }
-/*
+
   addItem() {
-    let date = new Date();
-    date.setDate(date.getDate() + 1);
-    const testItem = <AuctionItem> {
-      name: "My Favorite Shirt",
+    const newItem = <AuctionItem> {
+      name: this.newDialog.name,
       currentBid: 0,
       currentHighestBidderEmail: "",
-      buyoutPrice: 100,
-      endTime: date,
-      imageUrl: 'https://12ax7web.s3.amazonaws.com/accounts/1/products/1986199879943/Ramen-Panda-tahiti-blue-light-t-shirt-teeturtle-full-21-1000x1000.jpg',
-      tags: ['clothing'],
+      buyoutPrice: this.newDialog.buyoutPrice,
+      endTime: this.newDialog.endTime,
+      imageUrl: this.newDialog.imageUrl,
+      tags: [],
       bidderEmailList: []
     }
-    this.auctioneerService.addItem(testItem);
-  }
-*/
-  addItem() {
-    this.newItem.currentBid = 0;
-    this.newItem.currentHighestBidderEmail = "";
-    this.newItem.tags = ['clothing'];
-    this.newItem.bidderEmailList = [];
-
-    this.auctioneerService.addItem(this.newItem);
+    if(this.newDialog.automotive == true){
+      newItem.tags.push('automotive');
+    }
+    if(this.newDialog.books == true){
+      newItem.tags.push('books');
+    }
+    if(this.newDialog.clothing == true){
+      newItem.tags.push('clothing');
+    }
+    if(this.newDialog.electronics == true){
+      newItem.tags.push('electronics');
+    }
+    if(this.newDialog.kitchen == true){
+      newItem.tags.push('kitchen');
+    }
+    if(this.newDialog.music == true){
+      newItem.tags.push('music');
+    }
+    if(this.newDialog.sports == true){
+      newItem.tags.push('sports');
+    }
+    console.log(newItem);
+    this.auctioneerService.addItem(newItem);
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(AuctioneerAddItemDialog, {
       width: '500px',
-      data: {name: this.newItem.name, buyoutPrice: this.newItem.buyoutPrice, endTime: this.newItem.endTime, imageUrl: this.newItem.imageUrl}
+      data: {name: this.newDialog.name, buyoutPrice: this.newDialog.buyoutPrice, endTime: this.newDialog.endTime, imageUrl: this.newDialog.imageUrl,
+        automotive: this.newDialog.automotive, books: this.newDialog.books, clothing: this.newDialog.clothing, electronics: this.newDialog.electronics,
+        kitchen: this.newDialog.kitchen, music: this.newDialog.music, sports: this.newDialog.sports}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.newItem.name = result.name;
-      this.newItem.buyoutPrice = result.buyoutPrice;
-      this.newItem.endTime = result.endTime;
-      this.newItem.imageUrl = 'https://12ax7web.s3.amazonaws.com/accounts/1/products/1986199879943/Ramen-Panda-tahiti-blue-light-t-shirt-teeturtle-full-21-1000x1000.jpg';
+      this.newDialog = result;
       this.addItem();
-      //console.log(result);
     });
   }
 

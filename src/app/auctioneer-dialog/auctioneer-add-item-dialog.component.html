@@ -1,47 +1,47 @@
 <h1 mat-dialog-title>Add Item</h1>
-  <div mat-dialog-content>
-    <form class="addItemForm">
-    <p>
+<div mat-dialog-content>
+    <div class="itemname">
       <mat-form-field appearance="fill">
         <mat-label>Item Name</mat-label>
         <input matInput [(ngModel)]="data.name" name="name" required>
       </mat-form-field>
-    </p>
-    <p>
+    </div>
+    <div class="buyoutprice">
       <mat-form-field appearance="fill">
-        <mat-label>Minimum Bid</mat-label>
+        <mat-label>Buyout Price</mat-label>
         <input matInput type="number" [(ngModel)]="data.buyoutPrice" class="right-align" name="bid" required>
         <span matPrefix>$&nbsp;</span>
         <span matSuffix>.00</span>
       </mat-form-field>
-    </p>
-    <p>
+    </div>
+    <div class="endtime">
       <mat-form-field appearance="fill">
         <mat-label>Auction End Time</mat-label>
         <input [min]="min" matInput [owlDateTime]="dtend" [owlDateTimeTrigger]="dtend" placeholder="Date Time" [(ngModel)]="data.endTime" name="end" required>
         <owl-date-time #dtend></owl-date-time>
       </mat-form-field>
-    </p>
-      <h3>Upload Image</h3>
-      <div class="form-group">
-          <input type="file" name="image" (change)="fileProgress($event)" [(ngModel)]="data.imageUrl"/>
-      </div>
-      <div *ngIf="fileUploadProgress">
-          Upload progress: {{ fileUploadProgress }}
-      </div>
-      <div class="image-preview mb-3" *ngIf="previewUrl">
-          <img [src]="previewUrl" height="100" />
-      </div>
-
-      <div class="mb-3" *ngIf="uploadedFilePath">
-          {{uploadedFilePath}}
-      </div>
-  </form>
+    </div>
+    <div class="image">
+      <mat-form-field appearance="fill">
+        <mat-label>Upload Image</mat-label>
+        <input matInput [(ngModel)]="data.imageUrl" name="imageUrl" placeholder="Image URL" required>
+      </mat-form-field>
+    </div>
+    <div class="tags">
+      <p>Select auction tags...</p>
+      <mat-checkbox [(ngModel)]="data.automotive" value="automotive" name="automotive">Automotive</mat-checkbox><br>
+      <mat-checkbox [(ngModel)]="data.books" value="books" name="books">Books</mat-checkbox><br>
+      <mat-checkbox [(ngModel)]="data.clothing" value="clothing" name="clothing">Clothing</mat-checkbox><br>
+      <mat-checkbox [(ngModel)]="data.electronics" value="electronics" name="electronics">Electronics</mat-checkbox><br>
+      <mat-checkbox [(ngModel)]="data.kitchen" value="kitchen" name="kitchen">Kitchen</mat-checkbox><br>
+      <mat-checkbox [(ngModel)]="data.music" value="music" name="music">Music</mat-checkbox><br>
+      <mat-checkbox [(ngModel)]="data.sports" value="sports" name="sports">Sports</mat-checkbox><br>
+    </div>
 </div>
 
 
 
 <div mat-dialog-actions>
   <button class="btn btn-secondary mr-sm-2" (click)="onNoClick()">No Thanks</button>
-  <button class="btn btn-primary mr-sm-2" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button id="dialog-submit" class="btn btn-primary mr-sm-2" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
 </div>
