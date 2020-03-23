@@ -1,30 +1,31 @@
 <h1 mat-dialog-title>Add Item</h1>
-<div mat-dialog-content>
-    <div class="itemname">
+<form  #dialogForm="ngForm">
+  <div mat-dialog-content>
+    <div class="form-group">
       <mat-form-field appearance="fill">
         <mat-label>Item Name</mat-label>
-        <input matInput [(ngModel)]="data.name" name="name" required>
+        <input id="dialog-name" matInput [(ngModel)]="data.name" name="name" required>
       </mat-form-field>
     </div>
-    <div class="buyoutprice">
+    <div class="form-group">
       <mat-form-field appearance="fill">
         <mat-label>Buyout Price</mat-label>
-        <input matInput type="number" [(ngModel)]="data.buyoutPrice" class="right-align" name="bid" required>
+        <input id="dialog-bid" matInput type="number" [(ngModel)]="data.buyoutPrice" class="right-align" name="bid" required>
         <span matPrefix>$&nbsp;</span>
         <span matSuffix>.00</span>
       </mat-form-field>
     </div>
-    <div class="endtime">
+    <div class="form-group">
       <mat-form-field appearance="fill">
         <mat-label>Auction End Time</mat-label>
-        <input [min]="min" matInput [owlDateTime]="dtend" [owlDateTimeTrigger]="dtend" placeholder="Date Time" [(ngModel)]="data.endTime" name="end" required>
+        <input id="dialog-time" [min]="min" matInput [owlDateTime]="dtend" [owlDateTimeTrigger]="dtend" placeholder="MM/DD/YY HH:MM AM/PM" [(ngModel)]="data.endTime" name="end" required>
         <owl-date-time #dtend></owl-date-time>
       </mat-form-field>
     </div>
-    <div class="image">
+    <div class="form-group">
       <mat-form-field appearance="fill">
         <mat-label>Upload Image</mat-label>
-        <input matInput [(ngModel)]="data.imageUrl" name="imageUrl" placeholder="Image URL" required>
+        <input id="dialog-image" matInput [(ngModel)]="data.imageUrl" name="imageUrl" placeholder="Image URL" required>
       </mat-form-field>
     </div>
     <div class="tags">
@@ -37,11 +38,9 @@
       <mat-checkbox [(ngModel)]="data.music" value="music" name="music">Music</mat-checkbox><br>
       <mat-checkbox [(ngModel)]="data.sports" value="sports" name="sports">Sports</mat-checkbox><br>
     </div>
-</div>
-
-
-
-<div mat-dialog-actions>
-  <button class="btn btn-secondary mr-sm-2" (click)="onNoClick()">No Thanks</button>
-  <button id="dialog-submit" class="btn btn-primary mr-sm-2" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
-</div>
+  </div>
+  <div mat-dialog-actions>
+    <button class="btn btn-secondary mr-sm-2" (click)="onNoClick()">Cancel</button>
+    <button id="dialog-submit" class="btn btn-primary mr-sm-2" [mat-dialog-close]="data" [disabled]="!dialogForm.form.valid">Add</button>
+  </div>
+</form>

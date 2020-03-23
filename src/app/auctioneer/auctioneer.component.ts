@@ -72,8 +72,10 @@ export class AuctioneerComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.newDialog = result;
-      this.addItem();
+      if(result != undefined){
+        this.newDialog = result;
+        this.addItem();
+      }
     });
   }
 

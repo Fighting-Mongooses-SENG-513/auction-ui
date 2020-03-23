@@ -12,7 +12,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 export class AuctioneerAddItemDialog {
   public min: Date;
 
-
   constructor(
     private http: HttpClient,
     public dialogRef: MatDialogRef<AuctioneerAddItemDialog>,
@@ -24,5 +23,4 @@ export class AuctioneerAddItemDialog {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }
