@@ -8,21 +8,39 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BidderComponent } from './bidder/bidder.component';
 import { AuctioneerComponent } from './auctioneer/auctioneer.component';
+import { AuctioneerAddItemDialog } from './auctioneer-dialog//auctioneer-add-item-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     BidderComponent,
-    AuctioneerComponent
+    AuctioneerComponent,
+    AuctioneerAddItemDialog,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    MatSelectModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AuctioneerAddItemDialog]
 })
 export class AppModule { }
