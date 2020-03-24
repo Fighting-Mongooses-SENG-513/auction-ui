@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     OwlNativeDateTimeModule,
     MatCheckboxModule,
     FontAwesomeModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],

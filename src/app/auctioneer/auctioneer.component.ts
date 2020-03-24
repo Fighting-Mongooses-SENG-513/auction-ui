@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuctionItem } from '../models/auction-item';
-import { AuctionDialog} from '../models/auction-dialog';
+import { AuctionItem } from '../models/auction-item.model';
 import { AuctioneerService } from '../auctioneer/auctioneer.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AuctioneerAddItemDialog } from '../auctioneer-dialog/auctioneer-add-item-dialog.component';
@@ -13,11 +12,9 @@ import { AuctioneerAddItemDialog } from '../auctioneer-dialog/auctioneer-add-ite
 })
 export class AuctioneerComponent implements OnInit {
   public auctionItems: AuctionItem[] = [];
-  public newDialog: AuctionDialog;
+  public newItem: AuctionItem = new AuctionItem();
 
-  constructor(private auctioneerService: AuctioneerService, public dialog: MatDialog,) {
-    this.newDialog = {} as AuctionDialog;
-  }
+  constructor(private auctioneerService: AuctioneerService, public dialog: MatDialog,) { }
 
   ngOnInit() {
     this.auctioneerService.getAuctionListListener().subscribe(list => {
@@ -28,52 +25,21 @@ export class AuctioneerComponent implements OnInit {
   }
 
   addItem() {
-    const newItem = <AuctionItem> {
-      name: this.newDialog.name,
-      currentBid: 0,
-      currentHighestBidderEmail: "",
-      buyoutPrice: this.newDialog.buyoutPrice,
-      endTime: this.newDialog.endTime,
-      imageUrl: this.newDialog.imageUrl,
-      tags: [],
-      bidderEmailList: []
-    }
-    if(this.newDialog.automotive == true){
-      newItem.tags.push('automotive');
-    }
-    if(this.newDialog.books == true){
-      newItem.tags.push('books');
-    }
-    if(this.newDialog.clothing == true){
-      newItem.tags.push('clothing');
-    }
-    if(this.newDialog.electronics == true){
-      newItem.tags.push('electronics');
-    }
-    if(this.newDialog.kitchen == true){
-      newItem.tags.push('kitchen');
-    }
-    if(this.newDialog.music == true){
-      newItem.tags.push('music');
-    }
-    if(this.newDialog.sports == true){
-      newItem.tags.push('sports');
-    }
-    console.log(newItem);
-    this.auctioneerService.addItem(newItem);
+    this.newItem.currentBid = 0;
+    this.newItem.currentHighestBidderEmail = "";
+    this.newItem.bidderEmailList = [];
+    this.auctioneerService.addItem(this.newItem);
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(AuctioneerAddItemDialog, {
       width: '500px',
-      data: {name: this.newDialog.name, buyoutPrice: this.newDialog.buyoutPrice, endTime: this.newDialog.endTime, imageUrl: this.newDialog.imageUrl,
-        automotive: this.newDialog.automotive, books: this.newDialog.books, clothing: this.newDialog.clothing, electronics: this.newDialog.electronics,
-        kitchen: this.newDialog.kitchen, music: this.newDialog.music, sports: this.newDialog.sports}
+      data: {name: this.newItem.name, buyoutPrice: this.newItem.buyoutPrice, endTime: this.newItem.endTime, imageUrl: this.newItem.imageUrl, tags: this.newItem.tags}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result != undefined){
-        this.newDialog = result;
+        this.newItem = result;
         this.addItem();
       }
     });

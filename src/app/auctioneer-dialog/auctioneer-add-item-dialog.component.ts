@@ -1,8 +1,9 @@
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Component, Inject} from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { AuctionDialog } from '../models/auction-dialog';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AuctionItem } from '../models/auction-item.model';
+import {MatSelectModule} from '@angular/material/select';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'auctioneer-add-item-dialog',
@@ -11,11 +12,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 })
 export class AuctioneerAddItemDialog {
   public min: Date;
+  tagsList: string[] = ['Automotive', 'Books', 'Clothing', 'Electronics', 'Jewelry', 'Kitchen', 'Music', 'Sports'];
 
   constructor(
     private http: HttpClient,
     public dialogRef: MatDialogRef<AuctioneerAddItemDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: AuctionDialog) {
+    @Inject(MAT_DIALOG_DATA) public data: AuctionItem) {
       this.min = new Date();
       this.min.setDate(this.min.getDate() + 1);
     }

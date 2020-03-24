@@ -29,14 +29,12 @@
       </mat-form-field>
     </div>
     <div class="tags">
-      <p>Select auction tags...</p>
-      <mat-checkbox [(ngModel)]="data.automotive" value="automotive" name="automotive">Automotive</mat-checkbox><br>
-      <mat-checkbox [(ngModel)]="data.books" value="books" name="books">Books</mat-checkbox><br>
-      <mat-checkbox [(ngModel)]="data.clothing" value="clothing" name="clothing">Clothing</mat-checkbox><br>
-      <mat-checkbox [(ngModel)]="data.electronics" value="electronics" name="electronics">Electronics</mat-checkbox><br>
-      <mat-checkbox [(ngModel)]="data.kitchen" value="kitchen" name="kitchen">Kitchen</mat-checkbox><br>
-      <mat-checkbox [(ngModel)]="data.music" value="music" name="music">Music</mat-checkbox><br>
-      <mat-checkbox [(ngModel)]="data.sports" value="sports" name="sports">Sports</mat-checkbox><br>
+      <mat-form-field>
+        <mat-label>Auction Tags</mat-label>
+        <mat-select name="tags" [(ngModel)]="data.tags" multiple>
+          <mat-option *ngFor="let tag of tagsList" [value]="tag" >{{tag}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
   </div>
   <div mat-dialog-actions>
