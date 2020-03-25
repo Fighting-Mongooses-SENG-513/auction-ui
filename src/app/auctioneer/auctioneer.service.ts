@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { AuctionItem } from '../models/auction-item.model';
-
+import { Result } from '../models/result.model';
 
 @Injectable({providedIn: 'root'})
 export class AuctioneerService {
@@ -58,12 +58,11 @@ export class AuctioneerService {
             })
         }
 
-        return this.httpClient.get<AuctionItem[]>(`${environment.BASE_URL}/auctions`, httpOptions)
+        return this.httpClient.get<Result<AuctionItem[]>>(`${environment.BASE_URL}/auctions`, httpOptions)
             .subscribe(response => {
                 if(response){
-
+                    console.log(response);
                     this.auctionItems = [];
-                    // @ts-ignore
                     response.result.forEach( (auction) => {
                       let item: AuctionItem = new AuctionItem(auction.name, auction.auctioneerEmail, auction.currentBid, auction.currentHighestBidderEmail, auction.buyoutPrice,
                                 auction.endTime, auction.imageUrl, auction.winnerEmail, auction.tags, auction.bidderEmailList);
