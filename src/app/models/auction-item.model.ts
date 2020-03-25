@@ -1,4 +1,4 @@
-export class AuctionItem {
+export class AuctionItem{
     name: String;
     auctioneerEmail?: String;
     currentBid: Number;
@@ -10,16 +10,22 @@ export class AuctionItem {
     tags: Array<String>;
     bidderEmailList: Array<String>;
 
-    contructor(name: String, auctioneerEmail: String, buyoutPrice: Number, endTime: Date, imageUrl: String, tags: Array<String>) {
+    contructor(name: String, auctioneerEmail: String, currentBid: Number, currentHighestBidderEmail: String, buyoutPrice: Number,
+              endTime: Date, imageUrl: String, winnerEmail: String, tags: Array<String>, bidderEmailList: Array<String>) {
       this.name = name;
       this.auctioneerEmail = auctioneerEmail;
-      this.currentBid = 0;
-      this.currentHighestBidderEmail = "";
+      this.currentBid = currentBid;
+      this.currentHighestBidderEmail = currentHighestBidderEmail;
       this.buyoutPrice = buyoutPrice;
       this.endTime = endTime;
       this.imageUrl = imageUrl;
-      this.winnerEmail = "";
+      this.winnerEmail = winnerEmail;
       this.tags = tags;
-      this.bidderEmailList = [];
+      this.bidderEmailList = bidderEmailList;
+    }
+
+    deserialize(input: any): AuctionItem {
+      Object.assign(this, input);
+      return this;
     }
 }

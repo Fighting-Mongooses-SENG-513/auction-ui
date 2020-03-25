@@ -64,7 +64,7 @@ export class AuctioneerService {
 
                     this.auctionItems = [];
                     response.result.forEach( (auction) => {
-                        this.auctionItems.push(auction);
+                        this.auctionItems.push(new AuctionItem().deserialize(auction));
                     });
                     this.auctionListListener.next(this.auctionItems);
 
