@@ -23,7 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
     AuthComponent,
     BidderComponent,
     AuctioneerComponent,
-    AuctioneerAddItemDialog,
+    AuctioneerAddItemDialog
   ],
   imports: [
     BrowserModule,

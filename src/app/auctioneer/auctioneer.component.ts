@@ -12,9 +12,9 @@ import { AuctioneerAddItemDialog } from '../auctioneer-dialog/auctioneer-add-ite
 export class AuctioneerComponent implements OnInit {
 
   public auctionItems: AuctionItem[] = [];
-  public newItem: AuctionItem = new AuctionItem();
 
-  constructor(private auctioneerService: AuctioneerService, public dialog: MatDialog,) { }
+  constructor(private auctioneerService: AuctioneerService, public dialog: MatDialog,) {
+  }
 
   ngOnInit() {
     this.auctioneerService.getAuctionListListener().subscribe(list => {
@@ -24,23 +24,23 @@ export class AuctioneerComponent implements OnInit {
     this.auctioneerService.getAuctions();
   }
 
-  addItem() {
-    this.newItem.currentBid = 0;
-    this.newItem.currentHighestBidderEmail = "";
-    this.newItem.bidderEmailList = [];
-    this.auctioneerService.addItem(this.newItem);
+  addItem(newItem: AuctionItem) {
+    this.auctioneerService.addItem(newItem);
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(AuctioneerAddItemDialog, {
       width: '500px',
-      data: {name: this.newItem.name, buyoutPrice: this.newItem.buyoutPrice, endTime: this.newItem.endTime, imageUrl: this.newItem.imageUrl, tags: this.newItem.tags}
+      data: {name: "", buyoutPrice: null, endTime: "", imageUrl: "", tags: []}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result != undefined){
-        this.newItem = result;
-        this.addItem();
+        let newItem: AuctionItem = result;
+        newItem.currentBid = 0;
+        newItem.currentHighestBidderEmail = "";
+        newItem.bidderEmailList = [];
+        this.addItem(newItem);
       }
     });
   }

@@ -58,13 +58,16 @@ export class AuctioneerService {
             })
         }
 
-        return this.httpClient.get<any>(`${environment.BASE_URL}/auctions`, httpOptions)
+        return this.httpClient.get<AuctionItem[]>(`${environment.BASE_URL}/auctions`, httpOptions)
             .subscribe(response => {
                 if(response){
 
                     this.auctionItems = [];
+                    // @ts-ignore
                     response.result.forEach( (auction) => {
-                        this.auctionItems.push(new AuctionItem().deserialize(auction));
+                      let item: AuctionItem = new AuctionItem(auction.name, auction.auctioneerEmail, auction.currentBid, auction.currentHighestBidderEmail, auction.buyoutPrice,
+                                auction.endTime, auction.imageUrl, auction.winnerEmail, auction.tags, auction.bidderEmailList);
+                      this.auctionItems.push(item);
                     });
                     this.auctionListListener.next(this.auctionItems);
 
