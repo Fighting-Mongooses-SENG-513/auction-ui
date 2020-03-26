@@ -10,16 +10,15 @@
     <div class="form-group">
       <mat-form-field appearance="fill">
         <mat-label>Buyout Price</mat-label>
-        <input id="dialog-bid" matInput type="number" [(ngModel)]="data.buyoutPrice" class="right-align" name="bid" required>
+        <input id="dialog-bid" matInput type="number" min=1 [(ngModel)]="data.buyoutPrice" class="right-align" name="bid" required>
         <span matPrefix>$&nbsp;</span>
-        <span matSuffix>.00</span>
       </mat-form-field>
     </div>
     <div class="form-group">
       <mat-form-field appearance="fill">
-        <mat-label>Auction End Time</mat-label>
-        <input id="dialog-time" [min]="min" matInput [owlDateTime]="dtend" [owlDateTimeTrigger]="dtend" placeholder="MM/DD/YY HH:MM AM/PM" [(ngModel)]="data.endTime" name="end" required>
-        <owl-date-time #dtend></owl-date-time>
+        <mat-label>Auction Length</mat-label>
+        <input id="dialog-days" matInput type="number" min=1 [(ngModel)]="data.auctionDays" name="days" required>
+        <span matSuffix>day(s)</span>
       </mat-form-field>
     </div>
     <div class="form-group">

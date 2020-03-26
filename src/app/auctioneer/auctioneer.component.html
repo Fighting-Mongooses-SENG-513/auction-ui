@@ -11,7 +11,10 @@
           <h5 class="card-title">{{ item.name }}</h5>
           <p class="card-text">Current Bid: {{ item.currentBid }}</p>
           <p class="card-text">User: {{ item.currentHighestBidderEmail }}</p>
-          <p class="card-text">EndTime: {{ item.endTime }}</p>
+          <p class="card-text">Remaining Time:
+            <span *ngIf="item.auctionDays > 1.0"> {{ item.auctionDays.toFixed() }} days</span>
+            <span *ngIf="item.auctionDays <= 1.0"> Ending Soon!</span>
+          </p>
         </div>
       </div>
 

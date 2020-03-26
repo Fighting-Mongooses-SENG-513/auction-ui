@@ -61,11 +61,15 @@ export class AuctioneerService {
         return this.httpClient.get<Result<AuctionItem[]>>(`${environment.BASE_URL}/auctions`, httpOptions)
             .subscribe(response => {
                 if(response){
-                    console.log(response);
                     this.auctionItems = [];
                     response.result.forEach( (auction) => {
+                      let currentDate = new Date();
+                      let endDate = new Date(auction.endTime);
+
+                      let date_difference = (endDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24);
+
                       let item: AuctionItem = new AuctionItem(auction.name, auction.auctioneerEmail, auction.currentBid, auction.currentHighestBidderEmail, auction.buyoutPrice,
-                                auction.endTime, auction.imageUrl, auction.winnerEmail, auction.tags, auction.bidderEmailList);
+                                date_difference, auction.imageUrl, auction.winnerEmail, auction.tags, auction.bidderEmailList);
                       this.auctionItems.push(item);
                     });
                     this.auctionListListener.next(this.auctionItems);

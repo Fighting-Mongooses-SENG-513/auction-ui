@@ -11,15 +11,12 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./auctioneer-add-item-dialog.component.scss']
 })
 export class AuctioneerAddItemDialog {
-  public min: Date;
-  tagsList: string[] = ['Automotive', 'Books', 'Clothing', 'Electronics', 'Jewelry', 'Kitchen', 'Music', 'Sports'];
+  tagsList: string[] = ['Automotive', 'Books', 'Clothing', 'Electronics', 'Jewelry', 'Kitchen', 'Movies', 'Music', 'Sports'];
 
   constructor(
     private http: HttpClient,
     public dialogRef: MatDialogRef<AuctioneerAddItemDialog>,
     @Inject(MAT_DIALOG_DATA) public data: AuctionItem) {
-      this.min = new Date();
-      this.min.setDate(this.min.getDate() + 1);
     }
 
   onNoClick(): void {
