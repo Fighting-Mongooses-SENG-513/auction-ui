@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuctionItem } from '../models/auction-item';
+import { AuctionItem } from '../models/auction-item.model';
 import { AuctioneerService } from '../auctioneer/auctioneer.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AuctioneerAddItemDialog } from '../auctioneer-dialog/auctioneer-add-item-dialog.component';
 
 @Component({
   selector: 'app-auctioneer',
@@ -11,7 +13,8 @@ export class AuctioneerComponent implements OnInit {
 
   public auctionItems: AuctionItem[] = [];
 
-  constructor(private auctioneerService: AuctioneerService) {}
+  constructor(private auctioneerService: AuctioneerService, public dialog: MatDialog,) {
+  }
 
   ngOnInit() {
     this.auctioneerService.getAuctionListListener().subscribe(list => {
@@ -21,20 +24,25 @@ export class AuctioneerComponent implements OnInit {
     this.auctioneerService.getAuctions();
   }
 
-  addItem() {
-    let date = new Date();
-    date.setDate(date.getDate() + 1);
-    const testItem = <AuctionItem> {
-      name: "My Favorite Shirt",
-      currentBid: 0,
-      currentHighestBidderEmail: "",
-      buyoutPrice: 100,
-      endTime: date,
-      imageUrl: 'https://12ax7web.s3.amazonaws.com/accounts/1/products/1986199879943/Ramen-Panda-tahiti-blue-light-t-shirt-teeturtle-full-21-1000x1000.jpg',
-      tags: ['clothing'],
-      bidderEmailList: []
-    }
-    this.auctioneerService.addItem(testItem);
+  addItem(newItem: AuctionItem) {
+    this.auctioneerService.addItem(newItem);
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(AuctioneerAddItemDialog, {
+      width: '500px',
+      data: {name: "", buyoutPrice: null, auctionDays: null, imageUrl: "", tags: []}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != undefined){
+        let newItem: AuctionItem = result;
+        newItem.currentBid = 0;
+        newItem.currentHighestBidderEmail = "";
+        newItem.bidderEmailList = [];
+        this.addItem(newItem);
+      }
+    });
   }
 
 

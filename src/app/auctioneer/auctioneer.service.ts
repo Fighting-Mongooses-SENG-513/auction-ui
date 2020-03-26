@@ -3,14 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { AuctionItem } from '../models/auction-item';
-
+import { AuctionItem } from '../models/auction-item.model';
+import { Result } from '../models/result.model';
 
 @Injectable({providedIn: 'root'})
 export class AuctioneerService {
 
     auctionItems: AuctionItem[] = [];
-    
+
     private errorListener = new Subject<string>();
     private auctionListListener = new Subject<AuctionItem[]>();
 
@@ -27,27 +27,27 @@ export class AuctioneerService {
     }
 
     addItem(item: AuctionItem){
-        
+
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + this.authService.getToken()
             })
         }
-        
+
         return this.httpClient.post(`${environment.BASE_URL}/auctions`, item, httpOptions)
             .subscribe(response => {
-                
+
                 if(response){
                     this.getAuctions();
                 }
-                
+
             }, error => {
                 // Failed getting auctions
                 this.errorListener.next(error.error.message)
-             
+
             });
-        
+
     }
 
     getAuctions() {
@@ -57,28 +57,33 @@ export class AuctioneerService {
                 'Authorization': 'Bearer ' + this.authService.getToken()
             })
         }
-        
-        return this.httpClient.get<any>(`${environment.BASE_URL}/auctions`, httpOptions)
+
+        return this.httpClient.get<Result<AuctionItem[]>>(`${environment.BASE_URL}/auctions`, httpOptions)
             .subscribe(response => {
                 if(response){
-                    
                     this.auctionItems = [];
                     response.result.forEach( (auction) => {
-                        this.auctionItems.push(auction);
-                    }); 
+                      let currentDate = new Date();
+                      let endDate = new Date(auction.endTime);
+
+                      let date_difference = (endDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24);
+
+                      let item: AuctionItem = new AuctionItem(auction.name, auction.auctioneerEmail, auction.currentBid, auction.currentHighestBidderEmail, auction.buyoutPrice,
+                                date_difference, auction.imageUrl, auction.winnerEmail, auction.tags, auction.bidderEmailList);
+                      this.auctionItems.push(item);
+                    });
                     this.auctionListListener.next(this.auctionItems);
 
                 }
-                
+
             }, error => {
                 // Failed getting auctions
                 this.errorListener.next(error.error.message)
-             
+
             });
     }
 
 
 
-    
-}
 
+}

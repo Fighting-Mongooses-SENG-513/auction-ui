@@ -1,7 +1,7 @@
 <p>
   Welcome Back!!
 </p>
-<button (click)="addItem()" type="click">Add</button>
+<button class="btn btn-primary mr-sm-2" (click)="openDialog()">Add Item</button>
 <div class="row card-group" >
   <div *ngFor="let item of auctionItems">
     <div class="col-lg-2 col-md-3 col-6" style="margin-bottom:10px">
@@ -11,11 +11,13 @@
           <h5 class="card-title">{{ item.name }}</h5>
           <p class="card-text">Current Bid: {{ item.currentBid }}</p>
           <p class="card-text">User: {{ item.currentHighestBidderEmail }}</p>
-          <p class="card-text">EndTime: {{ item.endTime }}</p>
+          <p class="card-text">Remaining Time:
+            <span *ngIf="item.auctionDays > 1.0"> {{ item.auctionDays.toFixed() }} days</span>
+            <span *ngIf="item.auctionDays <= 1.0"> Ending Soon!</span>
+          </p>
         </div>
       </div>
-    
+
     </div>
   </div>
 </div>
-
