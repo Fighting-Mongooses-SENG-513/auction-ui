@@ -13,8 +13,7 @@ export class AuctioneerComponent implements OnInit {
 
   public auctionItems: AuctionItem[] = [];
 
-  constructor(private auctioneerService: AuctioneerService, public dialog: MatDialog,) {
-  }
+  constructor(private auctioneerService: AuctioneerService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.auctioneerService.getAuctionListListener().subscribe(list => {
