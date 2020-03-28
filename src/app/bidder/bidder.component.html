@@ -1,4 +1,22 @@
 <p>
-  You are a bidder
+  Welcome Back!!
 </p>
+<div class="row card-group" >
+  <div *ngFor="let item of auctionItems">
+    <div class="col-lg-2 col-md-3 col-6" style="margin-bottom:10px">
+      <div class="card card-default" style="width: 18rem;">
+        <img [attr.src]="item.imageUrl" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.name }}</h5>
+          <p class="card-text">Current Bid: {{ item.currentBid }}</p>
+          <p class="card-text">User: {{ item.currentHighestBidderEmail }}</p>
+          <p class="card-text">Remaining Time:
+            <span *ngIf="item.auctionDays > 1.0"> {{ item.auctionDays.toFixed() }} days</span>
+            <span *ngIf="item.auctionDays <= 1.0"> Ending Soon!</span>
+          </p>
+        </div>
+      </div>
 
+    </div>
+  </div>
+</div>

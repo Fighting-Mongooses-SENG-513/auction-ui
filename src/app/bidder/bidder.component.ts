@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuctionItem } from '../models/auction-item.model';
+import { BidderService } from '../bidder/bidder.service';
 
 @Component({
   selector: 'app-bidder',
@@ -7,8 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BidderComponent implements OnInit {
 
-  constructor() { }
+  public auctionItems: AuctionItem[] = [];
 
-  ngOnInit() {}
+  constructor(private bidderService: BidderService) {
+  }
 
+  ngOnInit() {
+    this.bidderService.getAuctionListListener().subscribe(list => {
+      this.auctionItems = list;
+    });
+
+    this.bidderService.getAuctions();
+  }
 }
