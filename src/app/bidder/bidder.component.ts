@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuctionItem } from '../models/auction-item.model';
 import { BidderService } from '../bidder/bidder.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSidenavModule} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-bidder',

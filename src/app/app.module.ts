@@ -16,7 +16,6 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -38,7 +37,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     FormsModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent],
