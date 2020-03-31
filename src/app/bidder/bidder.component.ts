@@ -12,7 +12,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 export class BidderComponent implements OnInit {
 
   public auctionItems: AuctionItem[] = [];
-  filterTags: String[] = [];
+  public filterTags: String[] = [];
+  public filteredItems: AuctionItem[] = [];
 
   constructor(private bidderService: BidderService) {
   }
@@ -25,15 +26,29 @@ export class BidderComponent implements OnInit {
     this.bidderService.getAuctions();
   }
 
-  changeFilterTags(e): void{
-   if (e.checked) {
-     this.filterTags.push(e.source.value);
-   } else {
-     let index = this.filterTags.indexOf(e.source.value);
-     if (index !== -1) {
-       this.filterTags.splice(index, 1);
-     }
-   }
-   console.log(this.filterTags);
- }
+  changeFilterTags(e): void {
+    if (e.checked) {
+      this.filterTags.push(e.source.value);
+    } else {
+      let index = this.filterTags.indexOf(e.source.value);
+      if (index !== -1) {
+        this.filterTags.splice(index, 1);
+      }
+    }
+    this.filterItems();
+  }
+
+  filterItems() {
+    this.filteredItems = [];
+    if(this.filterTags.length > 0 ){
+      for(let item of this.auctionItems) {
+        for(let tag of this.filterTags) {
+          let index = item.tags.indexOf(tag);
+          if (index !== -1) {
+            this.filteredItems.push(item);
+          }
+        }
+      }
+    }
+  }
 }
