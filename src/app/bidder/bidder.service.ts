@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { AuctionItem } from '../models/auction-item.model';
 import { Result } from '../models/result.model';
+import { Search } from '../models/search.model';
 
 @Injectable({providedIn: 'root'})
 export class BidderService {
@@ -57,6 +58,16 @@ export class BidderService {
                 this.errorListener.next(error.error.message)
 
             });
+    }
+
+    searchAuctions(search: Search): Observable<Result<AuctionItem[]>> {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.authService.getToken()
+            })
+        }
+        return this.httpClient.post<Result<AuctionItem[]>>(`${environment.BASE_URL}/auctions/search`, search, httpOptions);
     }
 
 }

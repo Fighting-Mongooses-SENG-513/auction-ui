@@ -1,10 +1,21 @@
-<p>
-  Welcome Back!!
-</p>
-<div class="row card-group" >
-  <div *ngFor="let item of auctionItems">
-    <div class="col-lg-2 col-md-3 col-6" style="margin-bottom:10px">
-      <div class="card card-default" style="width: 18rem;">
+<form [formGroup]="searchForm" (submit)="onSearch()">
+  <div class="row">
+    <div class="col-sm-10 offset-1">
+      <div class="input-group">
+        <input type="text" class="form-control" id="search" placeholder="Search" formControlName="search">
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="submit">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<br/>
+
+<div *ngIf="!noSearchResults" class="row card-group" >
+    <div *ngFor="let item of auctionItems" class="col-sm-3" style="margin-bottom:10px; width: 100%;">
+      <div class="card card-default" style="width: 100%;">
         <img [attr.src]="item.imageUrl" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{ item.name }}</h5>
@@ -16,7 +27,12 @@
           </p>
         </div>
       </div>
-
     </div>
+</div>
+
+<div *ngIf="noSearchResults" class="row">
+  <div class="col-12 text-center">
+    <h4>No Results</h4>
   </div>
+  
 </div>
