@@ -40,10 +40,19 @@ export class BidderComponent implements OnInit {
         this.auctionItems = result.result;
       } else {
         this.noSearchResults = true;
+        this.auctionItems = [];
       }
       
     });
   }
+
+  clearSearch() {
+    this.noSearchResults = false;
+    this.filteredItems = [];
+    this.filterTags = [];
+    this.bidderService.getAuctions();
+  }
+
   changeFilterTags(e): void {
     if (e.checked) {
       this.filterTags.push(e.source.value);

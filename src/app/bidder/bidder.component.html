@@ -19,13 +19,14 @@
             <input type="text" class="form-control" id="search" placeholder="Search" formControlName="search">
             <div class="input-group-append">
               <button class="btn btn-outline-primary" type="submit">Search</button>
+              <button class="btn btn-outline-secondary" type="button" (click)="clearSearch()">Clear</button>
             </div>
           </div>
         </div>
       </div>
     </form>
     <div *ngIf="filterTags.length == 0">
-      <div class="row card-group" >
+      <div class="row card-group mb-4">
         <div class="col-sm-4" *ngFor="let item of auctionItems" style="margin-bottom:10px">
           <div class="card card-default" style="width: 100%;">
             <img [attr.src]="item.imageUrl" class="card-img-top auction-image" alt="...">
@@ -43,11 +44,11 @@
       </div>
     </div>
     <div *ngIf="filterTags.length > 0">
-      <div class="row card-group" >
+      <div class="row card-group mb-4">
         <div *ngFor="let item of filteredItems">
-          <div class="col-lg-2 col-md-3 col-6" style="margin-bottom:10px">
-            <div class="card card-default" style="width: 18rem;">
-              <img [attr.src]="item.imageUrl" class="card-img-top" alt="...">
+          <div class="col-sm-4" style="margin-bottom:10px">
+            <div class="card card-default" style="width: 100%;">
+              <img [attr.src]="item.imageUrl" class="card-img-top auction-image" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{ item.name }}</h5>
                 <p class="card-text">Current Bid: {{ item.currentBid }}</p>
@@ -62,11 +63,10 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-<div *ngIf="noSearchResults" class="row">
-  <div class="col-12 text-center">
-    <h4>No Results</h4>
+    <div *ngIf="noSearchResults" class="row">
+      <div class="col-12 text-center">
+        <h4>No Results</h4>
+      </div>
+    </div>
   </div>
 </div>

@@ -13,6 +13,8 @@ import {FormControl} from '@angular/forms';
 export class AuctioneerAddItemDialog {
   tagsList: string[] = ['Automotive', 'Books', 'Clothing', 'Electronics', 'Jewelry', 'Kitchen', 'Movies', 'Music', 'Sports'];
 
+  missingFields = false;
+
   constructor(
     private http: HttpClient,
     public dialogRef: MatDialogRef<AuctioneerAddItemDialog>,
@@ -21,5 +23,15 @@ export class AuctioneerAddItemDialog {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  addItem() {
+    if (this.data.name === '' || this.data.buyoutPrice === null 
+    || this.data.auctionDays === null || this.data.imageUrl === '' || this.data.tags.length < 1) {
+      this.missingFields = true;
+      return;
+    } else {
+      this.dialogRef.close(this.data);
+    }
   }
 }

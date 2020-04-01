@@ -30,10 +30,11 @@ export class AuctioneerComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(AuctioneerAddItemDialog, {
       width: '500px',
-      data: {name: "", buyoutPrice: null, auctionDays: null, imageUrl: "", tags: []}
+      data: {name: '', buyoutPrice: null, auctionDays: null, imageUrl: '', tags: []}
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       if(result != undefined){
         let newItem: AuctionItem = result;
         newItem.currentBid = 0;
