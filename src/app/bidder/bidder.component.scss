@@ -1,1 +1,7 @@
 @import "~src/app/app.component";
+
+.auction-image {
+    width: 100%;
+    height: 30vw;
+    object-fit: cover;
+}
