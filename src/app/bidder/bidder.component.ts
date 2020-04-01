@@ -42,7 +42,7 @@ export class BidderComponent implements OnInit {
         this.noSearchResults = true;
         this.auctionItems = [];
       }
-      
+
     });
   }
 
@@ -50,14 +50,18 @@ export class BidderComponent implements OnInit {
     this.noSearchResults = false;
     this.filteredItems = [];
     this.filterTags = [];
+    let filters = document.getElementsByClassName("filter");
+    for(let filter of filters){
+      filter.checked = false;
+    }
     this.bidderService.getAuctions();
   }
 
   changeFilterTags(e): void {
-    if (e.checked) {
-      this.filterTags.push(e.source.value);
+    if (e.srcElement.checked) {
+      this.filterTags.push(e.srcElement.value);
     } else {
-      let index = this.filterTags.indexOf(e.source.value);
+      let index = this.filterTags.indexOf(e.srcElement.value);
       if (index !== -1) {
         this.filterTags.splice(index, 1);
       }
