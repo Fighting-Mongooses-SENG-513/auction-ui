@@ -34,7 +34,6 @@ export class AuctioneerComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if(result != undefined){
         let newItem: AuctionItem = result;
         newItem.currentBid = 0;
