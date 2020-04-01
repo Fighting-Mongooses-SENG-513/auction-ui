@@ -1,32 +1,35 @@
-<h1 mat-dialog-title>Add Item</h1>
+<h1 mat-dialog-title>Add Auction Item</h1>
 <form  #dialogForm="ngForm">
   <div mat-dialog-content>
-    <div class="form-group">
-      <mat-form-field appearance="fill">
-        <mat-label>Item Name</mat-label>
-        <input id="dialog-name" matInput [(ngModel)]="data.name" name="name" required>
-      </mat-form-field>
+    <div class="form-group mt-3">
+      <input id="name" class="form-control" [(ngModel)]="data.name" name="name" #name="ngModel" type="text" placeholder="Item Name" required>
+      <p *ngIf="missingFields && name.invalid" class="error">*Required</p>
+    </div>
+    <div class="form-row mb-3">
+      <div class="col">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">$</div>
+          </div>
+          <input id="buyoutPrice" class="form-control" type="number" min=1 [(ngModel)]="data.buyoutPrice"  name="buyoutPrice" #buyoutPrice="ngModel" placeholder="Buyout Price" required>
+          
+        </div>
+        <p *ngIf="missingFields && buyoutPrice.invalid" class="error">*Required</p>
+      </div>
+      <div class="col">
+        <div class="input-group">
+          <input id="auctionDays" class="form-control" type="number" min=1 [(ngModel)]="data.auctionDays" name="auctionDays" #auctionDays="ngModel" placeholder="Auction Duration" required>
+          <div class="input-group-append">
+            <span class="input-group-text">days</span>
+          </div>
+        </div>
+        <p *ngIf="missingFields && auctionDays.invalid" class="error">*Required</p>        
+      </div>
     </div>
     <div class="form-group">
-      <mat-form-field appearance="fill">
-        <mat-label>Buyout Price</mat-label>
-        <input id="dialog-bid" matInput type="number" min=1 [(ngModel)]="data.buyoutPrice" class="right-align" name="bid" required>
-        <span matPrefix>$&nbsp;</span>
-      </mat-form-field>
+      <input id="imageUrl" class="form-control" type="text" [(ngModel)]="data.imageUrl" name="imageUrl" #imageUrl="ngModel" placeholder="Image URL" required>
     </div>
-    <div class="form-group">
-      <mat-form-field appearance="fill">
-        <mat-label>Auction Length</mat-label>
-        <input id="dialog-days" matInput type="number" min=1 [(ngModel)]="data.auctionDays" name="days" required>
-        <span matSuffix>day(s)</span>
-      </mat-form-field>
-    </div>
-    <div class="form-group">
-      <mat-form-field appearance="fill">
-        <mat-label>Upload Image</mat-label>
-        <input id="dialog-image" matInput [(ngModel)]="data.imageUrl" name="imageUrl" placeholder="Image URL" required>
-      </mat-form-field>
-    </div>
+    <p *ngIf="missingFields && imageUrl.invalid" class="error">*Required</p>
     <div class="tags">
       <mat-form-field>
         <mat-label>Auction Tags</mat-label>
@@ -34,10 +37,11 @@
           <mat-option *ngFor="let tag of tagsList" [value]="tag" >{{tag}}</mat-option>
         </mat-select>
       </mat-form-field>
+      <p *ngIf="missingFields && data.tags.length === 0" class="error">*Required</p>
     </div>
   </div>
   <div mat-dialog-actions>
     <button class="btn btn-secondary mr-sm-2" (click)="onNoClick()">Cancel</button>
-    <button id="dialog-submit" class="btn btn-primary mr-sm-2" [mat-dialog-close]="data" [disabled]="!dialogForm.form.valid">Add</button>
+    <button class="btn btn-success mr-sm-2" (click)="addItem()">Add Item</button>
   </div>
 </form>
