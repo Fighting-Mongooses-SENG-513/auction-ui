@@ -1,1 +1,51 @@
 @import "~src/app/app.component";
+
+/* The sidebar menu */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
+
+/* The sidebar text format */
+.sidebar label{
+  padding: 10px;
+  font-size: 18px;
+  text-decoration: none;
+  color: #818181;
+  transition: 0.3s;
+}
+
+/* When you mouse over the close button, change its color */
+.sidebar .closebtn:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  text-decoration: none;
+  color: #818181;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  transition: 0.3s;
+}
+
+/* Style page content */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+}
