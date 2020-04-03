@@ -3,7 +3,6 @@ import { AuctionItem } from '../models/auction-item.model';
 import { BidderService } from '../bidder/bidder.service';
 import { FormBuilder } from '@angular/forms';
 import { Search } from '../models/search.model';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-bidder',
@@ -42,7 +41,7 @@ export class BidderComponent implements OnInit {
         this.noSearchResults = true;
         this.auctionItems = [];
       }
-      
+
     });
   }
 
@@ -50,14 +49,20 @@ export class BidderComponent implements OnInit {
     this.noSearchResults = false;
     this.filteredItems = [];
     this.filterTags = [];
+
+    let filters = document.getElementsByClassName("filter");
+    Array.from(filters).forEach(function(element) {
+      const checkbox = element as HTMLInputElement;
+      checkbox.checked = false
+    });
     this.bidderService.getAuctions();
   }
 
   changeFilterTags(e): void {
-    if (e.checked) {
-      this.filterTags.push(e.source.value);
+    if (e.srcElement.checked) {
+      this.filterTags.push(e.srcElement.value);
     } else {
-      let index = this.filterTags.indexOf(e.source.value);
+      let index = this.filterTags.indexOf(e.srcElement.value);
       if (index !== -1) {
         this.filterTags.splice(index, 1);
       }
@@ -77,5 +82,15 @@ export class BidderComponent implements OnInit {
         }
       }
     }
+  }
+
+  openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+
+  closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
   }
 }
