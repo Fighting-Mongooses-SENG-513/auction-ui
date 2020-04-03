@@ -33,7 +33,7 @@ export class BidderService {
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + this.authService.getToken()
             })
-        }
+        };
 
         return this.httpClient.get<Result<AuctionItem[]>>(`${environment.BASE_URL}/auctions`, httpOptions)
             .subscribe(response => {

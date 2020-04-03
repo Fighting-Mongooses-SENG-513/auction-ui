@@ -44,7 +44,7 @@ export class AuctioneerService {
 
             }, error => {
                 // Failed getting auctions
-                this.errorListener.next(error.error.message)
+                this.errorListener.next(error.error.message);
 
             });
 

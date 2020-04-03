@@ -7,7 +7,7 @@ import { AuctioneerService } from './auctioneer/auctioneer.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public loggedIn = false;
   public isAuctioneer: boolean;
   public errorMessage: string;

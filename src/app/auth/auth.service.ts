@@ -35,7 +35,7 @@ export class AuthService {
     }
 
     createUser(email: string, password: string, auctioneer: boolean) {
-        const newUser = {email: email, password: password, auctioneer: auctioneer};
+        const newUser = {email, password, auctioneer};
         return this.httpClient.post<TokenResponse>(`${environment.BASE_URL}/user/create`, newUser)
             .subscribe(response => {
                 this.token = response.token;
@@ -54,7 +54,7 @@ export class AuthService {
     }
 
     login(email: string, password: string) {
-        const login = {email: email, password: password};
+        const login = {email, password};
         return this.httpClient.post<TokenResponse>(`${environment.BASE_URL}/user/login`, login)
             .subscribe(response => {
                 this.token = response.token;
@@ -119,7 +119,7 @@ export class AuthService {
         if (!token || !expirationDate) {
             return;
         } else {
-            return {token: token, expirationDate: new Date(expirationDate)};
+            return {token, expirationDate: new Date(expirationDate)};
         }
     }
 
