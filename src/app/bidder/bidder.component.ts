@@ -3,6 +3,7 @@ import { AuctionItem } from '../models/auction-item.model';
 import { BidderService } from '../bidder/bidder.service';
 import { FormBuilder } from '@angular/forms';
 import { Search } from '../models/search.model';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-bidder',
@@ -14,27 +15,35 @@ export class BidderComponent implements OnInit {
   private allItems: AuctionItem[] = [];
 
   public auctionItems: AuctionItem[] = [];
+  public bidderItems: AuctionItem[] = [];
   public filterTags: string[] = [];
   public filteredItems: AuctionItem[] = [];
 
   noSearchResults = false;
   bidderHistory = false;
+  myEmail = '';
 
   searchForm = this.formBuilder.group({
     search: ['']
   });
 
   constructor(private bidderService: BidderService,
+              private authService: AuthService,
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.myEmail = this.authService.getUserEmail();
+
     this.bidderService.getAuctionListListener().subscribe(list => {
       this.allItems = list;
       this.allItems.forEach(item => {
-        if (item.auctionDays) {
-
+        if (item.auctionDays >= 0) { // Display only active auctions
+          this.auctionItems.push(item);
         }
-      })
+        if (item.bidderEmailList.includes(this.myEmail)) {
+          this.bidderItems.push(item);
+        }
+      });
     });
 
     this.bidderService.getAuctions();

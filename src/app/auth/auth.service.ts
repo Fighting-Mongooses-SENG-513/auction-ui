@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 export class AuthService {
     private token: string;
     private tokenTimer: any;
+    private userEmail: string;
 
     private authStatusListener = new Subject<boolean>();
     private personaListener = new Subject<boolean>();
@@ -15,8 +16,12 @@ export class AuthService {
 
     constructor(private httpClient: HttpClient) {}
 
-    getToken(){
+    getToken() {
         return this.token;
+    }
+
+    getUserEmail() {
+      return this.userEmail;
     }
 
     getAuthStatusListener() {
@@ -124,7 +129,8 @@ export class AuthService {
         const payload = JSON.parse(window.atob(base64));
         if (payload.auctioneer !== 'undefined' || payload.auctioneer !== '') {
             this.personaListener.next(payload.auctioneer);
-        }  
+        }
+        this.userEmail = payload.email;
     }
 }
 
