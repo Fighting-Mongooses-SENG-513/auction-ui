@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 export class AuthService {
     private token: string;
     private tokenTimer: any;
+    private userEmail: string;
 
     private authStatusListener = new Subject<boolean>();
     private personaListener = new Subject<boolean>();
@@ -15,8 +16,12 @@ export class AuthService {
 
     constructor(private httpClient: HttpClient) {}
 
-    getToken(){
+    getToken() {
         return this.token;
+    }
+
+    getUserEmail() {
+      return this.userEmail;
     }
 
     getAuthStatusListener() {
@@ -30,7 +35,7 @@ export class AuthService {
     }
 
     createUser(email: string, password: string, auctioneer: boolean) {
-        const newUser = {email: email, password: password, auctioneer: auctioneer};
+        const newUser = {email, password, auctioneer};
         return this.httpClient.post<TokenResponse>(`${environment.BASE_URL}/user/create`, newUser)
             .subscribe(response => {
                 this.token = response.token;
@@ -49,7 +54,7 @@ export class AuthService {
     }
 
     login(email: string, password: string) {
-        const login = {email: email, password: password};
+        const login = {email, password};
         return this.httpClient.post<TokenResponse>(`${environment.BASE_URL}/user/login`, login)
             .subscribe(response => {
                 this.token = response.token;
@@ -114,7 +119,7 @@ export class AuthService {
         if (!token || !expirationDate) {
             return;
         } else {
-            return {token: token, expirationDate: new Date(expirationDate)};
+            return {token, expirationDate: new Date(expirationDate)};
         }
     }
 
@@ -124,7 +129,8 @@ export class AuthService {
         const payload = JSON.parse(window.atob(base64));
         if (payload.auctioneer !== 'undefined' || payload.auctioneer !== '') {
             this.personaListener.next(payload.auctioneer);
-        }  
+        }
+        this.userEmail = payload.email;
     }
 }
 
