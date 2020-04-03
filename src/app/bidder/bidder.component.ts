@@ -65,8 +65,6 @@ export class BidderComponent implements OnInit {
     });
   }
 
-
-
   clearSearch() {
     this.noSearchResults = false;
     this.filteredItems = [];
