@@ -49,8 +49,8 @@ export class BidderComponent implements OnInit {
     this.bidderService.getAuctions();
   }
 
-  showBidHistory() {
-    this.bidderHistory = true;
+  toggleBidHistory() {
+    this.bidderHistory = !this.bidderHistory;
   }
 
   onSearch() {
@@ -71,14 +71,20 @@ export class BidderComponent implements OnInit {
     this.noSearchResults = false;
     this.filteredItems = [];
     this.filterTags = [];
+
+    const filters = document.getElementsByClassName('filter');
+    Array.from(filters).forEach(element => {
+      const checkbox = element as HTMLInputElement;
+      checkbox.checked = false;
+    });
     this.bidderService.getAuctions();
   }
 
   changeFilterTags(e): void {
-    if (e.checked) {
-      this.filterTags.push(e.source.value);
+    if (e.srcElement.checked) {
+      this.filterTags.push(e.srcElement.value);
     } else {
-      const index = this.filterTags.indexOf(e.source.value);
+      const index = this.filterTags.indexOf(e.srcElement.value);
       if (index !== -1) {
         this.filterTags.splice(index, 1);
       }
@@ -98,5 +104,15 @@ export class BidderComponent implements OnInit {
         }
       }
     }
+  }
+
+  openNav() {
+    document.getElementById('mySidebar').style.width = '250px';
+    document.getElementById('main').style.marginLeft = '250px';
+  }
+
+  closeNav() {
+    document.getElementById('mySidebar').style.width = '0';
+    document.getElementById('main').style.marginLeft = '0';
   }
 }
