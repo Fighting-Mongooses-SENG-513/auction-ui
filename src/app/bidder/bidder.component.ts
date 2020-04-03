@@ -3,7 +3,6 @@ import { AuctionItem } from '../models/auction-item.model';
 import { BidderService } from '../bidder/bidder.service';
 import { FormBuilder } from '@angular/forms';
 import { Search } from '../models/search.model';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-bidder',
@@ -12,11 +11,14 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 })
 export class BidderComponent implements OnInit {
 
+  private allItems: AuctionItem[] = [];
+
   public auctionItems: AuctionItem[] = [];
-  public filterTags: String[] = [];
+  public filterTags: string[] = [];
   public filteredItems: AuctionItem[] = [];
 
   noSearchResults = false;
+  bidderHistory = false;
 
   searchForm = this.formBuilder.group({
     search: ['']
@@ -27,10 +29,19 @@ export class BidderComponent implements OnInit {
 
   ngOnInit() {
     this.bidderService.getAuctionListListener().subscribe(list => {
-      this.auctionItems = list;
+      this.allItems = list;
+      this.allItems.forEach(item => {
+        if (item.auctionDays) {
+
+        }
+      })
     });
 
     this.bidderService.getAuctions();
+  }
+
+  showBidHistory() {
+    this.bidderHistory = true;
   }
 
   onSearch() {
@@ -42,9 +53,10 @@ export class BidderComponent implements OnInit {
         this.noSearchResults = true;
         this.auctionItems = [];
       }
-      
     });
   }
+
+
 
   clearSearch() {
     this.noSearchResults = false;
@@ -57,7 +69,7 @@ export class BidderComponent implements OnInit {
     if (e.checked) {
       this.filterTags.push(e.source.value);
     } else {
-      let index = this.filterTags.indexOf(e.source.value);
+      const index = this.filterTags.indexOf(e.source.value);
       if (index !== -1) {
         this.filterTags.splice(index, 1);
       }
@@ -67,10 +79,10 @@ export class BidderComponent implements OnInit {
 
   filterItems() {
     this.filteredItems = [];
-    if(this.filterTags.length > 0 ){
-      for(let item of this.auctionItems) {
-        for(let tag of this.filterTags) {
-          let index = item.tags.indexOf(tag);
+    if (this.filterTags.length > 0 ) {
+      for (const item of this.auctionItems) {
+        for (const tag of this.filterTags) {
+          const index = item.tags.indexOf(tag);
           if (index !== -1) {
             this.filteredItems.push(item);
           }

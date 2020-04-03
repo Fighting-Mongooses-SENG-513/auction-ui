@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="!bidderHistory" class="row">
   <div class="col-2" style="background-color: lightgrey">
       <h5>Filter by Tag:</h5>
       <mat-checkbox value="Automotive" name="automotive" data-md-icheck (change)="changeFilterTags($event)">Automotive</mat-checkbox><br>
@@ -21,6 +21,7 @@
               <button class="btn btn-outline-primary" type="submit">Search</button>
               <button class="btn btn-outline-secondary" type="button" (click)="clearSearch()">Clear</button>
             </div>
+            <button class="btn btn-success ml-3" (click)="showBidHistory()">My Bids</button>
           </div>
         </div>
       </div>
@@ -66,6 +67,22 @@
     <div *ngIf="noSearchResults" class="row">
       <div class="col-12 text-center">
         <h4>No Results</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="bidderHistory" class="row">
+  <div class="col-sm-4" *ngFor="let item of auctionItems" style="margin-bottom:10px">
+    <div class="card card-default" style="width: 100%;">
+      <img [attr.src]="item.imageUrl" class="card-img-top auction-image" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+        <p class="card-text">Current Bid: {{ item.currentBid }}</p>
+        <p class="card-text">User: {{ item.currentHighestBidderEmail }}</p>
+        <p class="card-text">Remaining Time:
+          <span *ngIf="item.auctionDays > 1.0"> {{ item.auctionDays.toFixed() }} days</span>
+          <span *ngIf="item.auctionDays <= 1.0"> Ending Soon!</span>
+        </p>
       </div>
     </div>
   </div>

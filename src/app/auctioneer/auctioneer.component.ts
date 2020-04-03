@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuctionItem } from '../models/auction-item.model';
 import { AuctioneerService } from '../auctioneer/auctioneer.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { AuctioneerAddItemDialog } from '../auctioneer-dialog/auctioneer-add-item-dialog.component';
 
 @Component({
@@ -34,10 +34,10 @@ export class AuctioneerComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result != undefined){
-        let newItem: AuctionItem = result;
+      if (result !== undefined) {
+        const newItem: AuctionItem = result;
         newItem.currentBid = 0;
-        newItem.currentHighestBidderEmail = "";
+        newItem.currentHighestBidderEmail = '';
         newItem.bidderEmailList = [];
         this.addItem(newItem);
       }

@@ -27,10 +27,10 @@ export class AppComponent implements OnInit{
     });
     this.authService.getErrorListener().subscribe(message => {
       this.errorMessage = message;
-    })
+    });
     this.auctioneerService.getAuctioneerErrorListener().subscribe(message => {
       this.errorMessage = message;
-    })
+    });
     this.authService.tryLogin();
   }
 
@@ -41,5 +41,4 @@ export class AppComponent implements OnInit{
   clearErrorMessage() {
     this.errorMessage = '';
   }
-  
 }
