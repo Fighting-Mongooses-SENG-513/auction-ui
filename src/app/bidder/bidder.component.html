@@ -37,6 +37,7 @@
               <p class="card-text">Remaining Time:
                 <span *ngIf="item.auctionDays > 1.0"> {{ item.auctionDays.toFixed() }} days</span>
                 <span *ngIf="item.auctionDays <= 1.0"> Ending Soon!</span>
+                <button class="btn btn-success float-right" (click)="openBidDialog(item._id)">Bid</button>
               </p>
             </div>
           </div>
@@ -56,6 +57,7 @@
                 <p class="card-text">Remaining Time:
                   <span *ngIf="item.auctionDays > 1.0"> {{ item.auctionDays.toFixed() }} days</span>
                   <span *ngIf="item.auctionDays <= 1.0"> Ending Soon!</span>
+                  <button class="btn btn-success float-right" (click)="openBidDialog(item._id)">Bid</button>
                 </p>
               </div>
             </div>

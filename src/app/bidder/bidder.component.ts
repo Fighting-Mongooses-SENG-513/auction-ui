@@ -3,7 +3,8 @@ import { AuctionItem } from '../models/auction-item.model';
 import { BidderService } from '../bidder/bidder.service';
 import { FormBuilder } from '@angular/forms';
 import { Search } from '../models/search.model';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
+import { BidDialogComponent } from '../bid-dialog/bid-dialog.component';
 
 @Component({
   selector: 'app-bidder',
@@ -22,8 +23,13 @@ export class BidderComponent implements OnInit {
     search: ['']
   });
 
+  bidForm = this.formBuilder.group({
+    bidAmount: [''],
+  });
+
   constructor(private bidderService: BidderService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              public bidDialog: MatDialog) { }
 
   ngOnInit() {
     this.bidderService.getAuctionListListener().subscribe(list => {
@@ -42,7 +48,19 @@ export class BidderComponent implements OnInit {
         this.noSearchResults = true;
         this.auctionItems = [];
       }
-      
+    });
+  }
+
+  openBidDialog(auctionId) {
+    const dialogRef = this.bidDialog.open(BidDialogComponent, {
+      width: '500px',
+      data: { bidAmount: 0.00, auctionId: auctionId }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined) {
+        this.bidderService.bid(result.auctionId, result.bidAmount);
+      }
     });
   }
 

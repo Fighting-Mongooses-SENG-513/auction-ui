@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { AuctioneerService } from './auctioneer/auctioneer.service';
+import { BidderService } from './bidder/bidder.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit{
   public errorMessage: string;
 
   constructor(private authService: AuthService,
-              private auctioneerService: AuctioneerService) {}
+              private auctioneerService: AuctioneerService,
+              private bidderService: BidderService) {}
 
   ngOnInit() {
     this.authService.getAuthStatusListener().subscribe(status => {
@@ -31,6 +33,9 @@ export class AppComponent implements OnInit{
     this.auctioneerService.getAuctioneerErrorListener().subscribe(message => {
       this.errorMessage = message;
     })
+    this.bidderService.getBidderErrorListener().subscribe(message => {
+      this.errorMessage = message;
+    });
     this.authService.tryLogin();
   }
 
@@ -41,5 +46,5 @@ export class AppComponent implements OnInit{
   clearErrorMessage() {
     this.errorMessage = '';
   }
-  
+
 }
