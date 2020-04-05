@@ -23,7 +23,7 @@ export class BidderService {
         return this.auctionListListener.asObservable();
     }
 
-    getAuctioneerErrorListener() {
+    getBidderErrorListener() {
         return this.errorListener.asObservable();
     }
 
@@ -45,7 +45,7 @@ export class BidderService {
 
                       let date_difference = (endDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24);
 
-                      let item: AuctionItem = new AuctionItem(auction.name, auction.auctioneerEmail, auction.currentBid, auction.currentHighestBidderEmail, auction.buyoutPrice,
+                      let item: AuctionItem = new AuctionItem(auction._id, auction.name, auction.auctioneerEmail, auction.currentBid, auction.currentHighestBidderEmail, auction.buyoutPrice,
                                 date_difference, auction.imageUrl, auction.winnerEmail, auction.tags, auction.bidderEmailList);
                       this.auctionItems.push(item);
                     });
@@ -68,6 +68,27 @@ export class BidderService {
             })
         }
         return this.httpClient.post<Result<AuctionItem[]>>(`${environment.BASE_URL}/auctions/search`, search, httpOptions);
+    }
+
+    bid(auctionId, bidAmount) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.authService.getToken()
+            })
+        }
+
+        return this.httpClient.post<Result<AuctionItem>>(
+            `${environment.BASE_URL}/auctions/${auctionId}/bid`,
+            { bid: bidAmount },
+            httpOptions
+            ).subscribe(() => {
+                this.getAuctions();
+            }, error => {
+                console.log('in error');
+                console.log(error);
+                this.errorListener.next(error.error.errors)
+            });
     }
 
 }

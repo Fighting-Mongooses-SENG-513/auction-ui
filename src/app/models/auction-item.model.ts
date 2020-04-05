@@ -1,4 +1,5 @@
 export class AuctionItem {
+    _id: String;
     name: String;
     auctioneerEmail?: String;
     currentBid: Number;
@@ -11,8 +12,9 @@ export class AuctionItem {
     bidderEmailList: Array<String>;
     endTime?: Date;
 
-    constructor(name: String, auctioneerEmail: String, currentBid: Number, currentHighestBidderEmail: String, buyoutPrice: Number,
+    constructor(_id: String, name: String, auctioneerEmail: String, currentBid: Number, currentHighestBidderEmail: String, buyoutPrice: Number,
               auctionDays: Number, imageUrl: String, winnerEmail: String, tags: Array<String>, bidderEmailList: Array<String>) {
+      this._id = _id;
       this.name = name;
       this.auctioneerEmail = auctioneerEmail;
       this.currentBid = currentBid;
