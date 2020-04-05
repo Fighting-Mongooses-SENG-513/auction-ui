@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Make a Bid</h1>
+<form  #dialogForm="ngForm">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text">$</div>
+    </div>
+    <input id="bidAmount" class="form-control" type="number" min=1 [(ngModel)]="data.bidAmount"  name="bidAmount" #bidAmount="ngModel" placeholder="0.00" required>
+  </div>
+  <p *ngIf="invalidFields" class="error">Invalid</p>
+  <div mat-dialog-actions>
+    <button class="btn btn-secondary mr-sm-2" (click)="onNoClick()">Cancel</button>
+    <button class="btn btn-success mr-sm-2" (click)="bid()">Bid</button>
+  </div>
+</form>
