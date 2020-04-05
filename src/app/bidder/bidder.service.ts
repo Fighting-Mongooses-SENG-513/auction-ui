@@ -19,7 +19,7 @@ export class BidderService {
                 private authService: AuthService) {}
 
 
-    getAuctionListListener(){
+    getAuctionListListener() {
         return this.auctionListListener.asObservable();
     }
 
@@ -31,22 +31,22 @@ export class BidderService {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + this.authService.getToken()
+                Authorization: 'Bearer ' + this.authService.getToken()
             })
-        }
+        };
 
         return this.httpClient.get<Result<AuctionItem[]>>(`${environment.BASE_URL}/auctions`, httpOptions)
             .subscribe(response => {
-                if(response){
+                if (response) {
                     this.auctionItems = [];
                     response.result.forEach( (auction) => {
-                      let currentDate = new Date();
-                      let endDate = new Date(auction.endTime);
+                      const currentDate = new Date();
+                      const endDate = new Date(auction.endTime);
 
-                      let date_difference = (endDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24);
+                      const dateDifference = (endDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24);
 
                       let item: AuctionItem = new AuctionItem(auction._id, auction.name, auction.auctioneerEmail, auction.currentBid, auction.currentHighestBidderEmail, auction.buyoutPrice,
-                                date_difference, auction.imageUrl, auction.winnerEmail, auction.tags, auction.bidderEmailList);
+                                dateDifference, auction.imageUrl, auction.winnerEmail, auction.tags, auction.bidderEmailList);
                       this.auctionItems.push(item);
                     });
                     this.auctionListListener.next(this.auctionItems);
@@ -55,7 +55,7 @@ export class BidderService {
 
             }, error => {
                 // Failed getting auctions
-                this.errorListener.next(error.error.message)
+                this.errorListener.next(error.error.message);
 
             });
     }
@@ -64,9 +64,9 @@ export class BidderService {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + this.authService.getToken()
+                Authorization: 'Bearer ' + this.authService.getToken()
             })
-        }
+        };
         return this.httpClient.post<Result<AuctionItem[]>>(`${environment.BASE_URL}/auctions/search`, search, httpOptions);
     }
 

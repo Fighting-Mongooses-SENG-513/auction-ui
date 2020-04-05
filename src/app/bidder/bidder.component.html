@@ -1,17 +1,19 @@
-<div class="row">
-  <div class="col-2" style="background-color: lightgrey">
-      <h5>Filter by Tag:</h5>
-      <mat-checkbox value="Automotive" name="automotive" data-md-icheck (change)="changeFilterTags($event)">Automotive</mat-checkbox><br>
-      <mat-checkbox value="Books" name="books" data-md-icheck (change)="changeFilterTags($event)">Books</mat-checkbox><br>
-      <mat-checkbox value="Clothing" name="clothing" data-md-icheck (change)="changeFilterTags($event)">Clothing</mat-checkbox><br>
-      <mat-checkbox value="Electronics" name="electronics" data-md-icheck (change)="changeFilterTags($event)">Electronics</mat-checkbox><br>
-      <mat-checkbox value="Jewelry" name="jewelry" data-md-icheck (change)="changeFilterTags($event)">Jewelry</mat-checkbox><br>
-      <mat-checkbox value="Kitchen" name="kitchen" data-md-icheck (change)="changeFilterTags($event)">Kitchen</mat-checkbox><br>
-      <mat-checkbox value="Movies" name="movies" data-md-icheck (change)="changeFilterTags($event)">Movies</mat-checkbox><br>
-      <mat-checkbox value="Music" name="music" data-md-icheck (change)="changeFilterTags($event)">Music</mat-checkbox><br>
-      <mat-checkbox value="Sports" name="sports" data-md-icheck (change)="changeFilterTags($event)">Sports</mat-checkbox><br>
+
+<div *ngIf="!bidderHistory" class="row">
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
+    <label><input class="filter" type="checkbox" value="Automotive" name="automotive" data-md-icheck (change)="changeFilterTags($event)"> Automotive</label><br>
+    <label><input class="filter" type="checkbox" value="Books" name="books" data-md-icheck (change)="changeFilterTags($event)"> Books</label><br>
+    <label><input class="filter" type="checkbox" value="Clothing" name="clothing" data-md-icheck (change)="changeFilterTags($event)"> Clothing</label><br>
+    <label><input class="filter" type="checkbox" value="Electronics" name="electronics" data-md-icheck (change)="changeFilterTags($event)"> Electronics</label><br>
+    <label><input class="filter" type="checkbox" value="Jewelry" name="jewelry" data-md-icheck (change)="changeFilterTags($event)"> Jewelry</label><br>
+    <label><input class="filter" type="checkbox" value="Kitchen" name="kitchen" data-md-icheck (change)="changeFilterTags($event)"> Kitchen</label><br>
+    <label><input class="filter" type="checkbox" value="Movies" name="movies" data-md-icheck (change)="changeFilterTags($event)"> Movies</label><br>
+    <label><input class="filter" type="checkbox" value="Music" name="music" data-md-icheck (change)="changeFilterTags($event)"> Music</label><br>
+    <label><input class="filter" type="checkbox" value="Sports" name="sports" data-md-icheck (change)="changeFilterTags($event)"> Sports</label><br>
   </div>
-  <div class="col">
+  <div id="main" class="col">
+    <button class="btn btn-dark" (click)="openNav()">&#9776; Add Filters</button>
     <form class="mb-2" [formGroup]="searchForm" (submit)="onSearch()">
       <div class="row">
         <div class="col">
@@ -21,6 +23,7 @@
               <button class="btn btn-outline-primary" type="submit">Search</button>
               <button class="btn btn-outline-secondary" type="button" (click)="clearSearch()">Clear</button>
             </div>
+            <button class="btn btn-success ml-3" (click)="toggleBidHistory()">My Bids</button>
           </div>
         </div>
       </div>
@@ -36,7 +39,7 @@
               <p class="card-text">User: {{ item.currentHighestBidderEmail }}</p>
               <p class="card-text">Remaining Time:
                 <span *ngIf="item.auctionDays > 1.0"> {{ item.auctionDays.toFixed() }} days</span>
-                <span *ngIf="item.auctionDays <= 1.0"> Ending Soon!</span>
+                <span *ngIf="item.auctionDays <= 1.0"> Last Day!</span>
                 <button class="btn btn-success float-right" (click)="openBidDialog(item._id)">Bid</button>
               </p>
             </div>
@@ -70,5 +73,30 @@
         <h4>No Results</h4>
       </div>
     </div>
+  </div>
+</div>
+<div *ngIf="bidderHistory" class="row">
+
+  <div class="col-sm-12">
+    <button class="btn btn-success float-right" (click)="toggleBidHistory()">Go Back</button>
+  </div>
+  <div class="col-sm-3" *ngFor="let item of bidderItems" style="margin-bottom:10px">
+    <div class="card card-default" style="width: 100%;">
+      <img [attr.src]="item.imageUrl" class="card-img-top auction-image" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+        <p class="card-text">Final Price: {{ item.currentBid }}</p>
+        <p class="card-text">Auction Winner: {{ item.winnerEmail }}</p>
+        <p class="card-text">Remaining Time:
+          <span *ngIf="item.winnerEmail === myEmail; else lostAuction" style="color: green;"> WON </span>
+          <ng-template #lostAuction>
+            <span style="color: red;"> LOST </span>
+          </ng-template>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="bidderItems.length < 1" class="col-sm-12 text-center">
+    <h5>You have not bid on any auctions.</h5>
   </div>
 </div>

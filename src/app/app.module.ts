@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BidderComponent } from './bidder/bidder.component';
 import { AuctioneerComponent } from './auctioneer/auctioneer.component';
-import { AuctioneerAddItemDialog } from './auctioneer-dialog//auctioneer-add-item-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
+import {AuctioneerAddItemDialogComponent} from './auctioneer-dialog/auctioneer-add-item-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,8 @@ import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
     AuthComponent,
     BidderComponent,
     AuctioneerComponent,
-    AuctioneerAddItemDialog,
-    BidDialogComponent
+    BidDialogComponent,
+    AuctioneerAddItemDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +42,6 @@ import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AuctioneerAddItemDialog, BidDialogComponent]
+  entryComponents: [AuctioneerAddItemDialogComponent, BidDialogComponent]
 })
 export class AppModule { }

@@ -8,7 +8,7 @@ import { BidderService } from './bidder/bidder.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public loggedIn = false;
   public isAuctioneer: boolean;
   public errorMessage: string;
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit{
     });
     this.authService.getErrorListener().subscribe(message => {
       this.errorMessage = message;
-    })
+    });
     this.auctioneerService.getAuctioneerErrorListener().subscribe(message => {
       this.errorMessage = message;
     })
@@ -46,5 +46,4 @@ export class AppComponent implements OnInit{
   clearErrorMessage() {
     this.errorMessage = '';
   }
-
 }
