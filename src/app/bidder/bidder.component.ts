@@ -19,7 +19,7 @@ export class BidderComponent implements OnInit {
   public auctionItems: AuctionItem[] = [];
   public bidderItems: AuctionItem[] = [];
   public filterTags: string[] = [];
-  public filteredItems: AuctionItem[] = [];
+  public displayedItems: AuctionItem[] = [];
 
   noSearchResults = false;
   bidderHistory = false;
@@ -52,6 +52,7 @@ export class BidderComponent implements OnInit {
           this.bidderItems.push(item);
         }
       });
+      this.filterItems();
     });
 
     this.bidderService.getAuctions();
@@ -66,9 +67,11 @@ export class BidderComponent implements OnInit {
       if (result.result.length > 0) {
         this.noSearchResults = false;
         this.auctionItems = result.result;
+        this.filterItems();
       } else {
         this.noSearchResults = true;
         this.auctionItems = [];
+        this.displayedItems = [];
       }
     });
   }
@@ -88,7 +91,7 @@ export class BidderComponent implements OnInit {
 
   clearSearch() {
     this.noSearchResults = false;
-    this.filteredItems = [];
+    this.displayedItems = [];
     this.filterTags = [];
 
     const filters = document.getElementsByClassName('filter');
@@ -112,16 +115,18 @@ export class BidderComponent implements OnInit {
   }
 
   filterItems() {
-    this.filteredItems = [];
+    this.displayedItems = [];
     if (this.filterTags.length > 0 ) {
       for (const item of this.auctionItems) {
         for (const tag of this.filterTags) {
           const index = item.tags.indexOf(tag);
           if (index !== -1) {
-            this.filteredItems.push(item);
+            this.displayedItems.push(item);
           }
         }
       }
+    } else {
+      this.displayedItems = this.auctionItems;
     }
   }
 
