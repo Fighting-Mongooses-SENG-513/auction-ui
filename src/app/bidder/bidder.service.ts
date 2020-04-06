@@ -85,8 +85,6 @@ export class BidderService {
             ).subscribe(() => {
                 this.getAuctions();
             }, error => {
-                console.log('in error');
-                console.log(error);
                 this.errorListener.next(error.error.errors)
             });
     }
