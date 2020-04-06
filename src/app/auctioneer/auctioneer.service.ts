@@ -5,18 +5,34 @@ import { Subject } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { AuctionItem } from '../models/auction-item.model';
 import { Result } from '../models/result.model';
+import * as io from 'socket.io-client';
 
 @Injectable({providedIn: 'root'})
 export class AuctioneerService {
 
     auctionItems: AuctionItem[] = [];
-
+    private socket: any;
     private errorListener = new Subject<string>();
     private auctionListListener = new Subject<AuctionItem[]>();
 
     constructor(private httpClient: HttpClient,
-                private authService: AuthService) {}
+                private authService: AuthService) {
+        this.initSocket();
+    }
 
+    private initSocket(){
+        const _service = this;
+        this.socket = io(`${environment.BASE_URL}`);
+        this.socket.on('hello', function(message) {
+            console.log('server says "' + message + '"');
+        })
+
+    
+        this.socket.on('update', function() {
+            console.warn('updated!');
+            _service.getAuctions();
+        })
+    }
 
     getAuctionListListener(){
         return this.auctionListListener.asObservable();
@@ -27,7 +43,6 @@ export class AuctioneerService {
     }
 
     addItem(item: AuctionItem){
-
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
@@ -37,11 +52,7 @@ export class AuctioneerService {
 
         return this.httpClient.post(`${environment.BASE_URL}/auctions`, item, httpOptions)
             .subscribe(response => {
-
-                if(response){
-                    this.getAuctions();
-                }
-
+                // succesfully added item
             }, error => {
                 // Failed getting auctions
                 this.errorListener.next(error.error.message)
