@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuctionItem } from '../models/auction-item.model';
 import { AuctioneerService } from '../auctioneer/auctioneer.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { AuctioneerAddItemDialog } from '../auctioneer-dialog/auctioneer-add-item-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import { AuctioneerAddItemDialogComponent } from '../auctioneer-dialog/auctioneer-add-item-dialog.component';
 
 @Component({
   selector: 'app-auctioneer',
@@ -28,16 +28,16 @@ export class AuctioneerComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(AuctioneerAddItemDialog, {
+    const dialogRef = this.dialog.open(AuctioneerAddItemDialogComponent, {
       width: '500px',
       data: {name: '', buyoutPrice: null, auctionDays: null, imageUrl: '', tags: []}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result != undefined){
-        let newItem: AuctionItem = result;
+      if (result !== undefined) {
+        const newItem: AuctionItem = result;
         newItem.currentBid = 0;
-        newItem.currentHighestBidderEmail = "";
+        newItem.currentHighestBidderEmail = '';
         newItem.bidderEmailList = [];
         this.addItem(newItem);
       }

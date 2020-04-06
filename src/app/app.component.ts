@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { AuctioneerService } from './auctioneer/auctioneer.service';
+import { BidderService } from './bidder/bidder.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public loggedIn = false;
   public isAuctioneer: boolean;
   public errorMessage: string;
 
   constructor(private authService: AuthService,
-              private auctioneerService: AuctioneerService) {}
+              private auctioneerService: AuctioneerService,
+              private bidderService: BidderService) {}
 
   ngOnInit() {
     this.authService.getAuthStatusListener().subscribe(status => {
@@ -27,10 +29,13 @@ export class AppComponent implements OnInit{
     });
     this.authService.getErrorListener().subscribe(message => {
       this.errorMessage = message;
-    })
+    });
     this.auctioneerService.getAuctioneerErrorListener().subscribe(message => {
       this.errorMessage = message;
     })
+    this.bidderService.getBidderErrorListener().subscribe(message => {
+      this.errorMessage = message;
+    });
     this.authService.tryLogin();
   }
 
@@ -41,5 +46,4 @@ export class AppComponent implements OnInit{
   clearErrorMessage() {
     this.errorMessage = '';
   }
-  
 }

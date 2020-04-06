@@ -30,14 +30,13 @@ export class AuthComponent implements OnInit {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value);
     }
-    
   }
 
   onCreateAccount() {
     if (this.createAccountForm.valid) {
-      this.authService.createUser(this.createAccountForm.controls.email.value, this.createAccountForm.controls.password.value, this.createAccountForm.controls.auctioneer.value);
+      this.authService.createUser(this.createAccountForm.controls.email.value, this.createAccountForm.controls.password.value,
+        this.createAccountForm.controls.auctioneer.value);
     }
-    
   }
 
 }
