@@ -98,7 +98,7 @@ export class BidderService {
             { bid: bidAmount },
             httpOptions
             ).subscribe(() => {
-                this.getAuctions();
+                // successful bid
             }, error => {
                 this.errorListener.next(error.error.errors)
             });

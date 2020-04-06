@@ -43,6 +43,7 @@ export class BidderComponent implements OnInit {
 
     this.bidderService.getAuctionListListener().subscribe(list => {
       this.allItems = list;
+      this.auctionItems = []; // Empty the displayed list
       this.allItems.forEach(item => {
         if (item.auctionDays >= 0) { // Display only active auctions
           this.auctionItems.push(item);
