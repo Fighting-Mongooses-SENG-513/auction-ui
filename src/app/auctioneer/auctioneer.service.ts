@@ -66,10 +66,10 @@ export class AuctioneerService {
                       const currentDate = new Date();
                       const endDate = new Date(auction.endTime);
 
-                      const dateDifference = (endDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24);
-                      const item: AuctionItem = new AuctionItem(auction.name, auction.auctioneerEmail, auction.currentBid,
-                        auction.currentHighestBidderEmail, auction.imageUrl, auction.tags, auction.winnerEmail, auction.bidderEmailList,
-                        auction.buyoutPrice, dateDifference);
+                      let dateDifference = (endDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24);
+
+                      let item: AuctionItem = new AuctionItem(auction._id, auction.name, auction.auctioneerEmail, auction.currentBid, auction.currentHighestBidderEmail, auction.buyoutPrice,
+                                dateDifference, auction.imageUrl, auction.winnerEmail, auction.tags, auction.bidderEmailList);
                       this.auctionItems.push(item);
                     });
                     this.auctionListListener.next(this.auctionItems);

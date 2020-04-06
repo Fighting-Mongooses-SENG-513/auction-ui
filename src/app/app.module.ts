@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
 import {AuctioneerAddItemDialogComponent} from './auctioneer-dialog/auctioneer-add-item-dialog.component';
 
 @NgModule({
@@ -23,6 +24,7 @@ import {AuctioneerAddItemDialogComponent} from './auctioneer-dialog/auctioneer-a
     AuthComponent,
     BidderComponent,
     AuctioneerComponent,
+    BidDialogComponent,
     AuctioneerAddItemDialogComponent
   ],
   imports: [
@@ -40,6 +42,6 @@ import {AuctioneerAddItemDialogComponent} from './auctioneer-dialog/auctioneer-a
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AuctioneerAddItemDialogComponent]
+  entryComponents: [AuctioneerAddItemDialogComponent, BidDialogComponent]
 })
 export class AppModule { }

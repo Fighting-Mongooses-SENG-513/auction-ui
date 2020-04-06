@@ -3,6 +3,8 @@ import { AuctionItem } from '../models/auction-item.model';
 import { BidderService } from '../bidder/bidder.service';
 import { FormBuilder } from '@angular/forms';
 import { Search } from '../models/search.model';
+import { MatDialog } from '@angular/material/dialog';
+import { BidDialogComponent } from '../bid-dialog/bid-dialog.component';
 import {AuthService} from '../auth/auth.service';
 
 @Component({
@@ -27,7 +29,12 @@ export class BidderComponent implements OnInit {
     search: ['']
   });
 
+  bidForm = this.formBuilder.group({
+    bidAmount: [''],
+  });
+
   constructor(private bidderService: BidderService,
+              public bidDialog: MatDialog,
               private authService: AuthService,
               private formBuilder: FormBuilder) { }
 
@@ -61,6 +68,19 @@ export class BidderComponent implements OnInit {
       } else {
         this.noSearchResults = true;
         this.auctionItems = [];
+      }
+    });
+  }
+
+  openBidDialog(auctionId) {
+    const dialogRef = this.bidDialog.open(BidDialogComponent, {
+      width: '500px',
+      data: { bidAmount: 0.00, auctionId: auctionId }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined) {
+        this.bidderService.bid(result.auctionId, result.bidAmount);
       }
     });
   }
