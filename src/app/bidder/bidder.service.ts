@@ -17,21 +17,21 @@ export class BidderService {
     private auctionListListener = new Subject<AuctionItem[]>();
 
     constructor(private httpClient: HttpClient,
-                private authService: AuthService) {
+                private authService: AuthService) {}
 
-        this.initSocket();
-    }
-
-    private initSocket() {
+    public initSocket() {
         const _service = this;
         this.socket = io(`${environment.BASE_URL}`);
-        this.socket.on('hello', function(message) {
-            console.log('server says "' + message + '"');
-        })
 
         this.socket.on('update', function() {
             _service.getAuctions();
-        })
+        });
+    }
+
+    public closeSocket() {
+        if (this.socket && this.socket.connected) {
+            this.socket.close();
+        }
     }
 
     getAuctionListListener() {
