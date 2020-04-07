@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuctionItem } from '../models/auction-item.model';
 import { AuctioneerService } from '../auctioneer/auctioneer.service';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AuctioneerAddItemDialogComponent } from '../auctioneer-dialog/auctioneer-add-item-dialog.component';
 
 @Component({

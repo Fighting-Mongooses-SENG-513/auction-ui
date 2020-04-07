@@ -6,18 +6,33 @@ import { AuthService } from '../auth/auth.service';
 import { AuctionItem } from '../models/auction-item.model';
 import { Result } from '../models/result.model';
 import { Search } from '../models/search.model';
+import * as io from 'socket.io-client';
 
 @Injectable({providedIn: 'root'})
 export class BidderService {
 
     auctionItems: AuctionItem[] = [];
-
+    private socket: any;
     private errorListener = new Subject<string>();
     private auctionListListener = new Subject<AuctionItem[]>();
 
     constructor(private httpClient: HttpClient,
                 private authService: AuthService) {}
 
+    public initSocket() {
+        const _service = this;
+        this.socket = io(`${environment.BASE_URL}`);
+
+        this.socket.on('update', function() {
+            _service.getAuctions();
+        });
+    }
+
+    public closeSocket() {
+        if (this.socket && this.socket.connected) {
+            this.socket.close();
+        }
+    }
 
     getAuctionListListener() {
         return this.auctionListListener.asObservable();
@@ -83,7 +98,7 @@ export class BidderService {
             { bid: bidAmount },
             httpOptions
             ).subscribe(() => {
-                this.getAuctions();
+                // successful bid
             }, error => {
                 this.errorListener.next(error.error.errors)
             });

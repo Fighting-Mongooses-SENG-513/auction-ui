@@ -22,6 +22,14 @@ export class AppComponent implements OnInit {
       this.loggedIn = status;
       if (this.loggedIn === true) {
         this.clearErrorMessage();
+        if( this.isAuctioneer ) {
+          this.auctioneerService.initSocket();
+        } else {
+          this.bidderService.initSocket();
+        }
+      } else {
+        this.auctioneerService.closeSocket();
+        this.bidderService.closeSocket();
       }
     });
     this.authService.getPersonaListener().subscribe(persona => {
