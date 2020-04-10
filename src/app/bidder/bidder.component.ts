@@ -63,17 +63,22 @@ export class BidderComponent implements OnInit {
   }
 
   onSearch() {
-    this.bidderService.searchAuctions(new Search(this.searchForm.value.search)).subscribe(result => {
-      if (result.result.length > 0) {
-        this.noSearchResults = false;
-        this.auctionItems = result.result;
-        this.filterItems();
-      } else {
-        this.noSearchResults = true;
-        this.auctionItems = [];
-        this.displayedItems = [];
-      }
-    });
+    if (this.searchForm.value.search === '') {
+      return;
+    } else {
+      this.bidderService.searchAuctions(new Search(this.searchForm.value.search)).subscribe(result => {
+        if (result.result.length > 0) {
+          this.noSearchResults = false;
+          this.auctionItems = result.result;
+          this.filterItems();
+        } else {
+          this.noSearchResults = true;
+          this.auctionItems = [];
+          this.displayedItems = [];
+        }
+      });
+    }
+
   }
 
   openBidDialog(auctionId) {
