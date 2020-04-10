@@ -6,6 +6,7 @@ import { Search } from '../models/search.model';
 import { MatDialog } from '@angular/material/dialog';
 import { BidDialogComponent } from '../bid-dialog/bid-dialog.component';
 import {AuthService} from '../auth/auth.service';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-bidder',
@@ -13,9 +14,6 @@ import {AuthService} from '../auth/auth.service';
   styleUrls: ['./bidder.component.scss']
 })
 export class BidderComponent implements OnInit {
-
-  private allItems: AuctionItem[] = [];
-
   public auctionItems: AuctionItem[] = [];
   public bidderItems: AuctionItem[] = [];
   public filterTags: string[] = [];
@@ -42,16 +40,7 @@ export class BidderComponent implements OnInit {
     this.myEmail = this.authService.getUserEmail();
 
     this.bidderService.getAuctionListListener().subscribe(list => {
-      this.allItems = list;
-      this.auctionItems = []; // Empty the displayed list
-      this.allItems.forEach(item => {
-        if (item.auctionDays >= 0) { // Display only active auctions
-          this.auctionItems.push(item);
-        }
-        if (item.bidderEmailList.includes(this.myEmail)) {
-          this.bidderItems.push(item);
-        }
-      });
+      this.auctionItems = list;
       this.filterItems();
     });
 
@@ -115,19 +104,10 @@ export class BidderComponent implements OnInit {
   }
 
   filterItems() {
-    this.displayedItems = [];
-    if (this.filterTags.length > 0 ) {
-      for (const item of this.auctionItems) {
-        for (const tag of this.filterTags) {
-          const index = item.tags.indexOf(tag);
-          if (index !== -1) {
-            this.displayedItems.push(item);
-          }
-        }
-      }
-    } else {
-      this.displayedItems = this.auctionItems;
-    }
+    this.displayedItems = cloneDeep(this.auctionItems);
+    this.bidderItems = cloneDeep(this.auctionItems);
+    this.filterDisplayedItems();
+    this.filterBidderItems();
   }
 
   openNav() {
@@ -138,5 +118,30 @@ export class BidderComponent implements OnInit {
   closeNav() {
     document.getElementById('mySidebar').style.width = '0';
     document.getElementById('main').style.marginLeft = '0';
+  }
+
+  private filterDisplayedItems() {
+    this.displayedItems = this.displayedItems.filter((item) => {
+      // Don't include anything that's expired or has been won buy buyout
+      if (item.auctionDays <= 0 || typeof item.winnerEmail !== 'undefined') {
+        return false;
+      }
+
+      // If filters are applied, check that at least one applies to the item
+      if (this.filterTags.length > 0) {
+        const result = this.filterTags.some((tag) => {
+          return item.tags.includes(tag);
+        });
+        return result
+      } else {
+        return true;
+      }
+    });
+  }
+
+  private filterBidderItems() {
+    this.bidderItems = this.bidderItems.filter((item) => {
+      return item.bidderEmailList.includes(this.myEmail);
+    });
   }
 }
