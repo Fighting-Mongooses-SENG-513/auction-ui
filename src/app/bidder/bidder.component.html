@@ -65,9 +65,9 @@
         <p class="card-text">Final Price: {{ item.currentBid }}</p>
         <p class="card-text">Auction Winner: {{ item.winnerEmail }}</p>
         <p class="card-text">Remaining Time:
-          <span *ngIf="item.winnerEmail === myEmail; else lostAuction" style="color: green;"> WON </span>
+          <span class="font-weight-bold text-dark" *ngIf="item.winnerEmail === myEmail; else lostAuction"> WON </span>
           <ng-template #lostAuction>
-            <span style="color: red;"> LOST </span>
+            <span class="font-weight-bold text-white"> LOST </span>
           </ng-template>
         </p>
       </div>
