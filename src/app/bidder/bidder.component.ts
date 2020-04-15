@@ -73,11 +73,11 @@ export class BidderComponent implements OnInit {
   openBidDialog(auctionId) {
     const dialogRef = this.bidDialog.open(BidDialogComponent, {
       width: '500px',
-      data: { bidAmount: 0.00, auctionId: auctionId }
-    })
+      data: { bidAmount: 0.00, auctionId }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result != undefined) {
+      if (result !== undefined) {
         this.bidderService.bid(result.auctionId, result.bidAmount);
       }
     });
@@ -113,6 +113,10 @@ export class BidderComponent implements OnInit {
     this.bidderItems = cloneDeep(this.auctionItems);
     this.filterDisplayedItems();
     this.filterBidderItems();
+    console.log(this.displayedItems);
+    if (this.displayedItems.length < 1) {
+      this.noSearchResults = true;
+    }
   }
 
   openNav() {
@@ -134,10 +138,9 @@ export class BidderComponent implements OnInit {
 
       // If filters are applied, check that at least one applies to the item
       if (this.filterTags.length > 0) {
-        const result = this.filterTags.some((tag) => {
+        return this.filterTags.some((tag) => {
           return item.tags.includes(tag);
         });
-        return result
       } else {
         return true;
       }

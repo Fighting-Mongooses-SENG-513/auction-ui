@@ -13,7 +13,7 @@
     <label><input class="filter" type="checkbox" value="Sports" name="sports" data-md-icheck (change)="changeFilterTags($event)"> Sports</label><br>
   </div>
   <div id="main" class="col">
-    <button class="btn btn-dark" (click)="openNav()">&#9776; Add Filters</button>
+    <button class="btn btn-dark mb-3" (click)="openNav()">&#9776; Add Filters</button>
     <form class="mb-2" [formGroup]="searchForm" (submit)="onSearch()">
       <div class="row">
         <div class="col">
@@ -33,9 +33,10 @@
         <div class="card bg-danger text-white" style="width: 100%;">
           <img [attr.src]="item.imageUrl" class="card-img-top auction-image" alt="...">
           <div class="card-body">
-            <h5 class="card-title">{{ item.name }}</h5>
-            <p class="card-text">Current Bid: {{ item.currentBid }}</p>
-            <p class="card-text">User: {{ item.currentHighestBidderEmail }}</p>
+            <h5 class="card-title" style="margin: 0;">{{ item.name }}</h5>
+            <p class="card-text">Buy Now Price: ${{ item.buyoutPrice }}</p>
+            <p class="card-text" style="margin: 0; padding: 0;">Current Bid: ${{ item.currentBid }}</p>
+            <p class="card-text">Bidder: {{ item.currentHighestBidderEmail }}</p>
             <p class="card-text">Remaining Time:
               <span *ngIf="item.auctionDays > 1.0"> {{ item.auctionDays.toFixed() }} days</span>
               <span *ngIf="item.auctionDays <= 1.0"> Last Day!</span>
@@ -57,19 +58,23 @@
   <div class="col-sm-12">
     <button class="btn btn-danger float-right" (click)="toggleBidHistory()">Go Back</button>
   </div>
-  <div class="col-sm-3" *ngFor="let item of bidderItems" style="margin-bottom:10px">
+  <div class="col-sm-4" *ngFor="let item of bidderItems" style="margin-bottom:10px">
     <div class="card bg-danger text-white" style="width: 100%;">
       <img [attr.src]="item.imageUrl" class="card-img-top auction-image" alt="...">
       <div class="card-body">
-        <h5 class="card-title">{{ item.name }}</h5>
-        <p class="card-text">Final Price: {{ item.currentBid }}</p>
-        <p class="card-text">Auction Winner: {{ item.winnerEmail }}</p>
-        <p class="card-text">Remaining Time:
+        <h5 class="card-title" style="margin: 0;">{{ item.name }}</h5>
+        <p class="card-text">{{item.winnerEmail ? 'Final Price' : 'Current Bid'}}: ${{ item.currentBid }}</p>
+        <p *ngIf="item.winnerEmail" class="card-text">Auction Winner: {{ item.winnerEmail }}</p>
+        <p *ngIf="item.currentHighestBidderEmail && !item.winnerEmail" class="card-text">Current Bidder: {{ item.currentHighestBidderEmail }}</p>
+        <p *ngIf="item.winnerEmail; else inProgress" class="card-text">Auction Status:
           <span class="font-weight-bold text-dark" *ngIf="item.winnerEmail === myEmail; else lostAuction"> WON </span>
           <ng-template #lostAuction>
             <span class="font-weight-bold text-white"> LOST </span>
           </ng-template>
         </p>
+        <ng-template #inProgress>
+          <p class="card-text">Auction Status: In Progress</p>
+        </ng-template>
       </div>
     </div>
   </div>
