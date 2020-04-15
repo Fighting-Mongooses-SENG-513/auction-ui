@@ -113,7 +113,6 @@ export class BidderComponent implements OnInit {
     this.bidderItems = cloneDeep(this.auctionItems);
     this.filterDisplayedItems();
     this.filterBidderItems();
-    console.log(this.displayedItems);
     if (this.displayedItems.length < 1) {
       this.noSearchResults = true;
     }

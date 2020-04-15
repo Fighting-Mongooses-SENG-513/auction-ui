@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
       this.loggedIn = status;
       if (this.loggedIn === true) {
         this.clearErrorMessage();
-        if( this.isAuctioneer ) {
+        if ( this.isAuctioneer ) {
           this.auctioneerService.initSocket();
         } else {
           this.bidderService.initSocket();
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
     });
     this.auctioneerService.getAuctioneerErrorListener().subscribe(message => {
       this.errorMessage = message;
-    })
+    });
     this.bidderService.getBidderErrorListener().subscribe(message => {
       this.errorMessage = message;
     });

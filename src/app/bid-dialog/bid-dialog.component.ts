@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-type Bid = {
-  auctionId: String,
-  bidAmount: Number
+interface Bid  {
+  auctionId: string;
+  bidAmount: number;
 }
 
 @Component({
