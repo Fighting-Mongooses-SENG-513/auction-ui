@@ -1,6 +1,6 @@
 
 <div *ngIf="!bidderHistory" class="row">
-  <div id="mySidebar" class="sidebar">
+  <div id="mySidebar" class="sidebar bg-dark text-white">
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
     <label><input class="filter" type="checkbox" value="Automotive" name="automotive" data-md-icheck (change)="changeFilterTags($event)"> Automotive</label><br>
     <label><input class="filter" type="checkbox" value="Books" name="books" data-md-icheck (change)="changeFilterTags($event)"> Books</label><br>
@@ -20,17 +20,17 @@
           <div class="input-group">
             <input type="text" class="form-control" id="search" placeholder="Search" formControlName="search">
             <div class="input-group-append">
-              <button class="btn btn-outline-primary" type="submit">Search</button>
-              <button class="btn btn-outline-secondary" type="button" (click)="clearSearch()">Clear</button>
+              <button class="btn btn-dark" type="submit">Search</button>
+              <button class="btn btn-light" type="button" (click)="clearSearch()">Clear</button>
             </div>
-            <button class="btn btn-success ml-3" (click)="toggleBidHistory()">My Bids</button>
+            <button class="btn btn-danger ml-3" (click)="toggleBidHistory()">My Bids</button>
           </div>
         </div>
       </div>
     </form>
     <div class="row card-group mb-4">
       <div class="col-sm-4" *ngFor="let item of displayedItems" style="margin-bottom:10px">
-        <div class="card card-default" style="width: 100%;">
+        <div class="card bg-danger text-white" style="width: 100%;">
           <img [attr.src]="item.imageUrl" class="card-img-top auction-image" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{ item.name }}</h5>
@@ -39,7 +39,7 @@
             <p class="card-text">Remaining Time:
               <span *ngIf="item.auctionDays > 1.0"> {{ item.auctionDays.toFixed() }} days</span>
               <span *ngIf="item.auctionDays <= 1.0"> Last Day!</span>
-              <button class="btn btn-success float-right" (click)="openBidDialog(item._id)">Bid</button>
+              <button class="btn btn-dark float-right" (click)="openBidDialog(item._id)">Bid</button>
             </p>
           </div>
         </div>
@@ -55,19 +55,19 @@
 <div *ngIf="bidderHistory" class="row">
 
   <div class="col-sm-12">
-    <button class="btn btn-success float-right" (click)="toggleBidHistory()">Go Back</button>
+    <button class="btn btn-danger float-right" (click)="toggleBidHistory()">Go Back</button>
   </div>
   <div class="col-sm-3" *ngFor="let item of bidderItems" style="margin-bottom:10px">
-    <div class="card card-default" style="width: 100%;">
+    <div class="card bg-danger text-white" style="width: 100%;">
       <img [attr.src]="item.imageUrl" class="card-img-top auction-image" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{ item.name }}</h5>
         <p class="card-text">Final Price: {{ item.currentBid }}</p>
         <p class="card-text">Auction Winner: {{ item.winnerEmail }}</p>
         <p class="card-text">Remaining Time:
-          <span *ngIf="item.winnerEmail === myEmail; else lostAuction" style="color: green;"> WON </span>
+          <span class="font-weight-bold text-dark" *ngIf="item.winnerEmail === myEmail; else lostAuction"> WON </span>
           <ng-template #lostAuction>
-            <span style="color: red;"> LOST </span>
+            <span class="font-weight-bold text-white"> LOST </span>
           </ng-template>
         </p>
       </div>

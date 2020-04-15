@@ -3,12 +3,12 @@
     <h5>Your Auction Items</h5>
   </div>
   <div class="col-sm-2">
-    <button class="btn btn-success float-right" (click)="openDialog()">+ Add Item</button>
+    <button class="btn btn-danger float-right" (click)="openDialog()">+ Add Item</button>
   </div>
 </div>
 <div class="row card-group mb-4" >
   <div *ngFor="let item of auctionItems" class="col-sm-4" style="margin-bottom:10px">
-    <div class="card card-default" style="width: 100%">
+    <div class="card bg-danger text-white" style="width: 100%;">
       <img [attr.src]="item.imageUrl" class="card-img-top auction-image" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{ item.name }}</h5>
