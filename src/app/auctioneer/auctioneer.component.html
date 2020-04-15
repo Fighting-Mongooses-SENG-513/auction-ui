@@ -12,12 +12,16 @@
       <img [attr.src]="item.imageUrl" class="card-img-top auction-image" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{ item.name }}</h5>
-        <p class="card-text">Current Bid: {{ item.currentBid }}</p>
-        <p class="card-text">User: {{ item.currentHighestBidderEmail }}</p>
-        <p class="card-text">Remaining Time:
+        <p class="card-text">{{item.winnerEmail ? 'Final Price' : 'Current Bid'}}: ${{ item.currentBid }}</p>
+        <p class="card-text">Bidder: {{ item.currentHighestBidderEmail ? item.currentHighestBidderEmail : 'N/A' }}</p>
+        <p *ngIf="!item.winnerEmail; else endedAuction" class="card-text">Remaining Time:
           <span *ngIf="item.auctionDays > 1.0"> {{ item.auctionDays.toFixed() }} days</span>
-          <span *ngIf="item.auctionDays <= 1.0"> Ending Soon!</span>
+          <span *ngIf="item.auctionDays <= 1.0 && item.auctionDays > 0"> Ending Soon!</span>
+          <span *ngIf="item.auctionDays < 0">Auction Ended</span>
         </p>
+        <ng-template #endedAuction>
+          <p class="card-text">Remaining Time: Auction Ended</p>
+        </ng-template>
       </div>
     </div>
   </div>

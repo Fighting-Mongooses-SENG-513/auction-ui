@@ -22,7 +22,7 @@ export class AuctioneerService {
         const _service = this;
         this.socket = io(`${environment.BASE_URL}`);
 
-        this.socket.on('update', function() {
+        this.socket.on('update', () => {
             _service.getAuctions();
         });
     }
@@ -51,7 +51,7 @@ export class AuctioneerService {
 
         return this.httpClient.post(`${environment.BASE_URL}/auctions`, item, httpOptions)
             .subscribe(response => {
-                // succesfully added item
+                // successfully added item
             }, error => {
                 // Failed getting auctions
                 this.errorListener.next(error.error.message);
@@ -76,10 +76,11 @@ export class AuctioneerService {
                       const currentDate = new Date();
                       const endDate = new Date(auction.endTime);
 
-                      let dateDifference = (endDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24);
+                      const dateDifference = (endDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24);
 
-                      let item: AuctionItem = new AuctionItem(auction._id, auction.name, auction.auctioneerEmail, auction.currentBid, auction.currentHighestBidderEmail, auction.buyoutPrice,
-                                dateDifference, auction.imageUrl, auction.winnerEmail, auction.tags, auction.bidderEmailList);
+                      const item: AuctionItem = new AuctionItem(auction._id, auction.name, auction.auctioneerEmail, auction.currentBid,
+                        auction.currentHighestBidderEmail, auction.buyoutPrice, dateDifference, auction.imageUrl, auction.winnerEmail,
+                        auction.tags, auction.bidderEmailList);
                       this.auctionItems.push(item);
                     });
                     this.auctionListListener.next(this.auctionItems);

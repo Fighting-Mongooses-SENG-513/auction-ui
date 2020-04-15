@@ -1,19 +1,20 @@
 export class AuctionItem {
-    _id: String;
-    name: String;
-    auctioneerEmail?: String;
-    currentBid: Number;
-    currentHighestBidderEmail: String;
-    buyoutPrice?: Number;
-    auctionDays: Number;
-    imageUrl: String;
-    winnerEmail?: String;
-    tags: Array<String>;
-    bidderEmailList: Array<String>;
+    _id: string;
+    name: string;
+    auctioneerEmail?: string;
+    currentBid: number;
+    currentHighestBidderEmail: string;
+    buyoutPrice?: number;
+    auctionDays: number;
+    imageUrl: string;
+    winnerEmail?: string;
+    tags: Array<string>;
+    bidderEmailList: Array<string>;
     endTime?: Date;
 
-    constructor(_id: String, name: String, auctioneerEmail: String, currentBid: Number, currentHighestBidderEmail: String, buyoutPrice: Number,
-              auctionDays: Number, imageUrl: String, winnerEmail: String, tags: Array<String>, bidderEmailList: Array<String>) {
+    constructor(_id: string, name: string, auctioneerEmail: string, currentBid: number, currentHighestBidderEmail: string,
+                buyoutPrice: number, auctionDays: number, imageUrl: string, winnerEmail: string, tags: Array<string>,
+                bidderEmailList: Array<string>) {
       this._id = _id;
       this.name = name;
       this.auctioneerEmail = auctioneerEmail;
