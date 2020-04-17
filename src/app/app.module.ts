@@ -18,6 +18,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
 import {AuctioneerAddItemDialogComponent} from './auctioneer-dialog/auctioneer-add-item-dialog.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
