@@ -87,6 +87,7 @@ export class BidderComponent implements OnInit {
     this.noSearchResults = false;
     this.displayedItems = [];
     this.filterTags = [];
+    this.searchForm.setValue({search: ''});
 
     const filters = document.getElementsByClassName('filter');
     Array.from(filters).forEach(element => {
