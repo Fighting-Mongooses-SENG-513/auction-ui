@@ -40,7 +40,12 @@ export class BidderComponent implements OnInit {
     this.myEmail = this.authService.getUserEmail();
 
     this.bidderService.getAuctionListListener().subscribe(list => {
+
       this.auctionItems = list;
+
+      if(this.auctionItems.length > 0){
+        this.noSearchResults = false;
+      }
       this.filterItems();
     });
 
